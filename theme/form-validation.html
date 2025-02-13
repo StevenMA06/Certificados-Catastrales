@@ -709,7 +709,7 @@
                   <button type="button" name="search" id="search-btn" class="btn btn-flat">
                     <i class="mdi mdi-magnify"></i>
                   </button>
-                  <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
+                  <input type="text" name="query" id="search-input" class="form-control" placeholder=""
                     autofocus autocomplete="off" />
                 </div>
                 <div id="search-results-container">
@@ -1270,77 +1270,94 @@
           
               <!-- Campo oculto para almacenar la firma seleccionada -->
               <input type="hidden" id="firmaSeleccionada" value="">
-          </div>
+                </div>
+                
+                <script>
+                    function seleccionarFirma(valor, texto) {
+                        document.getElementById('firmaSeleccionada').value = valor; // Guarda el valor en el input oculto
+                        document.getElementById('dropdownMenuButton').textContent = texto; // Cambia el texto del botón
+                    }
+                </script>
           
-          <script>
-              function seleccionarFirma(valor, texto) {
-                  document.getElementById('firmaSeleccionada').value = valor; // Guarda el valor en el input oculto
-                  document.getElementById('dropdownMenuButton').textContent = texto; // Cambia el texto del botón
-              }
-          </script>
-          
+
           <style>
             #dropdownMenuButton {
                 background-color: #ffffff; 
                 color: rgb(89, 103, 231); 
-                padding: 10px 20px; 
+                padding: 5px 10px; 
                 font-size: 16px; 
                 font-weight: bold; 
                 border: 2px solid blue;
                 border-radius: 8px; 
                 cursor: pointer; 
                 transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-                margin-top: 20px; /* Agrega espacio arriba del botón */
+                margin-top: 10px; /* Espacio arriba del botón */
+                position: absolute;
+                left: 50px; /* Posición inicial */
+                top: -10px;
             }
-
+          
             #dropdownMenuButton:hover {
                 background-color: #0056b3; 
                 color: white; /* Cambia el color del texto al pasar el mouse */
-                transform: translateY(5px); /* Baja más cuando pasas el mouse */
+                transform: translate(0px, 5px); /* Mueve en X y Y */
             }
-
+          
             #dropdownMenuButton:active {
                 background-color: #004085; 
-                transform: translateY(10px); /* Baja aún más cuando haces clic */
+                transform: translate(0px, 5px); /* Mueve aún más en X y Y cuando se hace clic */
             }
-
           </style>
-
-            <div class="col-md-12 mb-3">
-              <label for="fecha" >Fecha (Día y Mes)</label>
-              <input type="text" class="form-control" id="fecha1" placeholder="Ejemplo: 26 diciembre" required>                      
-              <p style="font-size: 90%">ex. 99/99/9999</p>
-
-            </div>
-            <div class="col-md-12 mb-3">
-                <button class="btn btm-custom" type="submit" id="generarPDF1">GENERAR CERTIFIACO NEGATIVO</button>
-            </div>
-
-
-            <style>
-              .btm-custom {
-                  background-color: #ffffff; 
-                  color: rgb(89, 103, 231); 
-                  padding: 10px 20px; 
-                  font-size: 16px; 
-                  font-weight: bold; 
-                  border: 2px solid blue;
-                  border-radius: 8px; 
-                  cursor: pointer; 
-                  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-                  margin-top: 20px; /* Agrega espacio arriba del botón */
-              }
           
-              .btm-custom:hover {
-                  background-color: #0056b3; 
-                  transform: translateY(5px); /* Baja más cuando pasas el mouse */
-              }
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let button = document.getElementById("dropdownMenuButton");
+                button.style.left = "140px"; // Mueve el botón a la derecha
+            });
+          </script>
           
-              .btm-custom:active {
-                  background-color: #004085; 
-                  transform: translateY(10px); /* Baja aún más cuando haces clic */
-              }
-          </style>
+
+          <label class="col-md-12 mb-3" for="fecha2">Fecha (Día y Mes)</label>
+
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="mdi mdi-calendar-range"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" id="fecha2" name="fecha" placeholder="Ejemplo: 26 diciembre" required>
+                      </div>
+
+                      <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
+                  <div class="col-md-12 mb-3">
+                      <button class="btn btm-custom" type="submit" id="generarPDF1">GENERAR CERTIFIACO REGULAR</button>
+                  </div>
+
+
+                  <style>
+                    .btm-custom {
+                        background-color: #ffffff; 
+                        color: rgb(89, 103, 231); 
+                        padding: 5px 10px; 
+                        font-size: 16px; 
+                        font-weight: bold; 
+                        border: 2px solid blue;
+                        border-radius: 8px; 
+                        cursor: pointer; 
+                        transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+                        margin-top: 20px; /* Agrega espacio arriba del botón */
+                    }
+                
+                    .btm-custom:hover {
+                        background-color: #0056b3; 
+                        transform: translateY(5px); /* Baja más cuando pasas el mouse */
+                    }
+                
+                    .btm-custom:active {
+                        background-color: #004085; 
+                        transform: translateY(10px); /* Baja aún más cuando haces clic */
+                    }
+                </style>
 
 
 				</form>

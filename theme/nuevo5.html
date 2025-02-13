@@ -22,7 +22,8 @@
     
     
     
-    
+            <!-- Librería pdf-lib -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     
     
     
@@ -1219,141 +1220,93 @@
 				<h2>CERTIFIACO  CENTRO HISTORICO</h2>
 			</div>
 
-			<div class="card-body">
+			<div class="card-body" id="formContainer4" aria-hidden="true">
 				<form >
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
-							<label for="validationSolicitante">Solicitante5</label>
+							<label for="validationSolicitante">Solicitante</label>
 
-							<input type="text" class="form-control" id="validationSolicitante" placeholder="Solicitante" value="Md" required>
+							<input type="text" class="form-control" id="solicitante4" placeholder="Solicitante" value="Md" required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
 						</div>
 
 						<div class="col-md-12 mb-3">
-							<label for="validationReferencia">Referencia5</label>
+							<label for="validationReferencia">Referencia</label>
 
-							<input type="text" class="form-control" id="validationReferencia" placeholder="Referencia" value="Rahad" required>
+							<input type="text" class="form-control" id="referencia4" placeholder="Referencia" value="Rahad" required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
 						</div>
             <div class="col-md-12 mb-3">
-              <label for="validationServerDenominación">Denominación5</label>
-              <input type="text" class="form-control" id="validationServerDenominación" placeholder="Denominación" value="Rahad" required>
+              <label for="validationServerDenominación">Denominación</label>
+              <input type="text" class="form-control" id="denominacion4" placeholder="Denominación" value="Rahad" required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
 						<div class="col-md-12 mb-3">
-							<label for="validationServerCódigo">Código5</label>
-							<input type="text" class="form-control" id="validationServerCódigo" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
+							<label for="validationServerCódigo">Código</label>
+							<input type="text" class="form-control" id="codigo4" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
 							</div>
 						</div>
-            <label class="text-dark font-weight-medium" for="">fecha5</label>
+            <label class="col-md-12 mb-3" for="fecha4">Fecha (Día y Mes)</label>
 
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="mdi mdi-calendar-range"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" data-mask="00/00/0000" placeholder="" aria-label="">
-              </div>
-      
-              <p style="font-size: 90%">ex. 99/99/9999</p>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="mdi mdi-calendar-range"></i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" id="fecha4" name="fecha" placeholder="Ejemplo: 26 diciembre" required>
+                  </div>
+
+                  <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
 
 					</div>
           
+          <div class="col-md-12 mb-3">
+            <button class="btn btm-custom" type="submit" id="generarPDF4">GENERAR CERTIFIACO CENTRO HISTORICO</button>
+          </div>
 
-					<button class="btn btn-primary" type="submit">Submit form</button>
+          <style>
+            .btm-custom {
+                background-color: #ffffff; 
+                color: rgb(89, 103, 231); 
+                padding: 10px 20px; 
+                font-size: 16px; 
+                font-weight: bold; 
+                border: 2px solid blue;
+                border-radius: 8px; 
+                cursor: pointer; 
+                transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+                margin-top: 20px; /* Agrega espacio arriba del botón */
+            }
+        
+            .btm-custom:hover {
+                background-color: #0056b3; 
+                transform: translateY(5px); /* Baja más cuando pasas el mouse */
+            }
+        
+            .btm-custom:active {
+                background-color: #004085; 
+                transform: translateY(10px); /* Baja aún más cuando haces clic */
+            }
+        </style>
+
+
+					
 				</form>
 			</div>
 		</div>
 	</div>
 
-	<div class="col-lg-6">
-		<div class="card card-default">
-			<div class="card-header card-header-border-bottom">
-				<h2>Highlighted Input Field</h2>
-			</div>
-
-			<div class="card-body">
-				<form >
-					<div class="form-row">
-						<div class="col-md-12 mb-3">
-							<label for="validationServer01">First name</label>
-
-							<input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Md" required>
-
-							<div class="valid-feedback">
-								Looks good!
-							</div>
-						</div>
-
-						<div class="col-md-12 mb-3">
-							<label for="validationServer02">Last name</label>
-
-							<input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Rahad" required>
-
-							<div class="valid-feedback">
-								Looks good!
-							</div>
-						</div>
-
-						<div class="col-md-12 mb-3">
-							<label for="validationServerUsername">Username</label>
-
-							<input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username"
-								aria-describedby="inputGroupPrepend3" required>
-
-							<div class="invalid-feedback">
-								Please choose a username.
-							</div>
-						</div>
-					</div>
-
-					<div class="form-row">
-						<div class="col-md-6 mb-3">
-							<label for="validationServer03">City</label>
-
-							<input type="text" class="form-control is-invalid" id="validationServer03" placeholder="City" required>
-
-							<div class="invalid-feedback">
-								Please provide a valid city.
-							</div>
-						</div>
-
-						<div class="col-md-3 mb-3">
-							<label for="validationServer04">State</label>
-
-							<input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
-
-							<div class="invalid-feedback">
-								Please provide a valid state.
-							</div>
-						</div>
-
-						<div class="col-md-3 mb-3">
-							<label for="validationServer05">Zip</label>
-
-							<input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
-
-							<div class="invalid-feedback">
-								Please provide a valid zip.
-							</div>
-						</div>
-					</div>
-
-					<button class="btn btn-primary" type="submit">Submit form</button>
-				</form>
-			</div>
-		</div>
-	</div>
+	
 </div>
 
 
@@ -1421,7 +1374,8 @@
     
 
     
-    
+    <script src="ejemplo4.js"></script>
+    <script src="formulario.js"></script> <!-- Archivo para manejar el formulario -->
     
     
 
