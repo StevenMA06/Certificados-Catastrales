@@ -84,243 +84,36 @@
             <!-- Aplication Brand -->
             <div class="app-brand">
               <a href="/index.html" title="Sleek Dashboard">
-                <svg
-                  class="brand-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid"
-                  width="30"
-                  height="33"
-                  viewBox="0 0 30 33">
-                  <g fill="none" fill-rule="evenodd">
-                    <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
-                    <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                  </g>
-                </svg>
-
-                <span class="brand-name text-truncate">Sleek Dashboard</span>
+                  <img src="8.png" alt="Sleek Dashboard Logo" class="brand-icon" width="200" height="33">
+                  <span class="brand-name text-truncate"></span>
               </a>
-            </div>
+          </div>
+          <style>  
+            .app-brand {
+                  display: flex;
+                  align-items: center;
+                  width: 100%; /* Permite que ocupe todo el ancho disponible */
+                  max-width: none; /* Elimina restricciones de ancho */
+              }
+
+              .brand-icon {
+                    width: 170px !important;
+                    min-width: 170px; /* Evita que sea más pequeña */
+                    max-width: none; /* Quita restricciones */
+                    height: auto; /* Mantiene la proporción */
+                }
+
+          </style>
 
             <!-- begin sidebar scrollbar -->
             <div class="" data-simplebar style="height: 100%;">
               <!-- sidebar menu -->
               <ul class="nav sidebar-inner" id="sidebar-menu">
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
-                    aria-expanded="false" aria-controls="dashboard">
-                    <i class="mdi mdi-view-dashboard-outline"></i>
-                    <span class="nav-text">Dashboard</span> <b class="caret"></b>
-                  </a>
 
-                  <ul class="collapse " id="dashboard" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="index.html">
-                          <span class="nav-text">Ecommerce</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="analytics.html">
-                          <span class="nav-text">Analytics</span>
-                          <span class="badge badge-success">new</span>
-                        </a>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
-
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#app"
-                    aria-expanded="false" aria-controls="app">
-                    <i class="mdi mdi-pencil-box-multiple"></i>
-                    <span class="nav-text">App</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="app" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="chat.html">
-                          <span class="nav-text">Chat</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="contacts.html">
-                          <span class="nav-text">Contacts</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="team.html">
-                          <span class="nav-text">Team</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="calendar.html">
-                          <span class="nav-text">Calendar</span>
-                        </a>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
 
                 <!-- <li class="section-title">
                   UI Elements
                 </li> -->
-
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#components"
-                    aria-expanded="false" aria-controls="components">
-                    <i class="mdi mdi-folder-multiple-outline"></i>
-                    <span class="nav-text">Components</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="components" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="alert.html">
-                          <span class="nav-text">Alert</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="badge.html">
-                          <span class="nav-text">Badge</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="breadcrumb.html">
-                          <span class="nav-text">Breadcrumb</span>
-
-                        </a>
-                      </li>
-
-                      <li class="has-sub ">
-                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#buttons"
-                          aria-expanded="false" aria-controls="buttons">
-                          <span class="nav-text">Buttons</span> <b class="caret"></b>
-                        </a>
-
-                        <ul class="collapse " id="buttons">
-                          <div class="sub-menu">
-                            <li class="">
-                              <a href="button-default.html">Button Default</a>
-                            </li>
-
-                           <li class="">
-                              <a href="button-dropdown.html">Button Dropdown</a>
-                            </li>
-
-                           <li class="">
-                              <a href="button-group.html">Button Group</a>
-                            </li>
-
-                           <li class="">
-                              <a href="button-social.html">Button Social</a>
-                            </li>
-
-                           <li class="">
-                              <a href="button-loading.html">Button Loading</a>
-                            </li>
-                          </div>
-                        </ul>
-                      </li>
-                      
-                      <li class="">
-                        <a class="sidenav-item-link" href="card.html">
-                          <span class="nav-text">Card</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="carousel.html">
-                          <span class="nav-text">Carousel</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="collapse.html">
-                          <span class="nav-text">Collapse</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="list-group.html">
-                          <span class="nav-text">List Group</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="modal.html">
-                          <span class="nav-text">Modal</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="pagination.html">
-                          <span class="nav-text">Pagination</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="popover-tooltip.html">
-                          <span class="nav-text">Popover & Tooltip</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="progress-bar.html">
-                          <span class="nav-text">Progress Bar</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="spinner.html">
-                          <span class="nav-text">Spinner</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="switcher.html">
-                          <span class="nav-text">Switcher</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="tab.html">
-                          <span class="nav-text">Tab</span>
-                        </a>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
-
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#icons"
-                    aria-expanded="false" aria-controls="icons">
-                    <i class="mdi mdi-diamond-stone"></i>
-                    <span class="nav-text">Icons</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="icons" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="material-icon.html">
-                          <span class="nav-text">Material Icon</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="flag-icon.html">
-                          <span class="nav-text">Flag Icon</span>
-                        </a>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
 
                 <li class="has-sub active expand">
                   <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#forms"
@@ -374,116 +167,6 @@
                   </ul>
                 </li>
 
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#tables"
-                    aria-expanded="false" aria-controls="tables">
-                    <i class="mdi mdi-table"></i>
-                    <span class="nav-text">Tables</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="tables" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="basic-tables.html">
-                          <span class="nav-text">Basic Tables</span>
-                        </a>
-                      </li>
-
-                      <li class="has-sub ">
-                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#data-tables"
-                          aria-expanded="false" aria-controls="data-tables">
-                          <span class="nav-text">Data Tables</span> <b class="caret"></b>
-                        </a>
-
-                        <ul class="collapse " id="data-tables">
-                          <div class="sub-menu">
-                            <li class="">
-                              <a href="basic-data-table.html">Basic Data Table</a>
-                            </li>
-
-                           <li class="">
-                              <a href="responsive-data-table.html">Responsive Data Table</a>
-                            </li>
-
-                           <li class="">
-                              <a href="hoverable-data-table.html">Hoverable Data Table</a>
-                            </li>
-
-                           <li class="">
-                              <a href="expendable-data-table.html">Expendable Data Table</a>
-                            </li>
-                          </div>
-                        </ul>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
-
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#maps"
-                    aria-expanded="false" aria-controls="maps">
-                    <i class="mdi mdi-google-maps"></i>
-                    <span class="nav-text">Maps</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="maps" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="google-map.html">
-                          <span class="nav-text">Google Map</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="vector-map.html">
-                          <span class="nav-text">Vector Map</span>
-                        </a>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
-
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#widgets"
-                    aria-expanded="false" aria-controls="widgets">
-                    <i class="mdi mdi-widgets"></i>
-                    <span class="nav-text">Widgets</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="widgets" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="general-widget.html">
-                          <span class="nav-text">General Widget</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="chart-widget.html">
-                          <span class="nav-text">Chart Widget</span>
-                        </a>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
-
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
-                    aria-expanded="false" aria-controls="charts">
-                    <i class="mdi mdi-chart-pie"></i>
-                    <span class="nav-text">Charts</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="charts" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="chartjs.html">
-                          <span class="nav-text">ChartJS</span>
-                        </a>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
 
                 <!-- <li class="section-title">
                   Pages
@@ -1221,12 +904,30 @@
 			</div>
 
 			<div class="card-body"id="formContainer1" aria-hidden="true">
+        <style>
+          #formContainer1 {
+              display: flex;
+              justify-content: center;
+          }
+      
+          #formContainer1 form {
+              width: 80%;
+              max-width: 500px;
+          }
+      
+          .col-lg-6 {
+              margin: auto;
+              float: none;
+          }
+      </style>
+      
+
 				<form >
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
 							<label for="solicitante1">Solicitante</label>
 
-							<input type="text" class="form-control" id="solicitante1" placeholder="Solicitante" value="" required>
+							<input type="text" class="form-control" id="solicitante1" placeholder="Solicitante"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
@@ -1235,21 +936,21 @@
 						<div class="col-md-12 mb-3">
 							<label for="referencia1">Referencia</label>
 
-							<input type="text" class="form-control" id="referencia1" placeholder="Referencia" value="" required>
+							<input type="text" class="form-control" id="referencia1" placeholder="Referencia"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
 						</div>
             <div class="col-md-12 mb-3">
               <label for="denominacion1">Denominación</label>
-              <input type="text" class="form-control" id="denominacion1" placeholder="Denominación" value="" required>
+              <input type="text" class="form-control" id="denominacion1" placeholder="Denominación"  required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
 						<div class="col-md-12 mb-3">
 							<label for="Codigo">Código</label>
-							<input type="text" class="form-control" id="codigo1" placeholder="Código2" aria-describedby="inputGroupPrepend3" required>
+							<input type="text" class="form-control" id="codigo1" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
@@ -1284,14 +985,14 @@
             #dropdownMenuButton {
                 background-color: #ffffff; 
                 color: rgb(89, 103, 231); 
-                padding: 5px 10px; 
+                padding: 5px 5px; 
                 font-size: 16px; 
                 font-weight: bold; 
-                border: 2px solid blue;
+                border: 2px solid rgb(0, 174, 255);
                 border-radius: 8px; 
                 cursor: pointer; 
                 transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-                margin-top: 10px; /* Espacio arriba del botón */
+                margin-top: 5px; /* Espacio arriba del botón */
                 position: absolute;
                 left: 50px; /* Posición inicial */
                 top: -10px;
@@ -1300,12 +1001,12 @@
             #dropdownMenuButton:hover {
                 background-color: #0056b3; 
                 color: white; /* Cambia el color del texto al pasar el mouse */
-                transform: translate(0px, 5px); /* Mueve en X y Y */
+                transform: translate(0px, 0px); /* Mueve en X y Y */
             }
           
             #dropdownMenuButton:active {
                 background-color: #004085; 
-                transform: translate(0px, 5px); /* Mueve aún más en X y Y cuando se hace clic */
+                transform: translate(0px, 0px); /* Mueve aún más en X y Y cuando se hace clic */
             }
           </style>
           
@@ -1317,7 +1018,7 @@
           </script>
           
 
-          <label class="col-md-12 mb-3" for="fecha2">Fecha (Día y Mes)</label>
+          <label class="col-md-12 mb-3" for="fecha">Fecha (Día y Mes)</label>
 
                       <div class="input-group mb-2">
                         <div class="input-group-prepend">
@@ -1325,7 +1026,7 @@
                             <i class="mdi mdi-calendar-range"></i>
                           </span>
                         </div>
-                        <input type="text" class="form-control" id="fecha2" name="fecha" placeholder="Ejemplo: 26 diciembre" required>
+                        <input type="text" class="form-control" id="fecha1" name="fecha" placeholder="Ejemplo: 26 diciembre" required>
                       </div>
 
                       <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
@@ -1341,23 +1042,30 @@
                         padding: 5px 10px; 
                         font-size: 16px; 
                         font-weight: bold; 
-                        border: 2px solid blue;
+                        border: 2px solid rgb(0, 174, 255);
                         border-radius: 8px; 
                         cursor: pointer; 
                         transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
                         margin-top: 20px; /* Agrega espacio arriba del botón */
+                        position: absolute;
+                        left: 10px; /* Posición inicial */
+                        top: -10px;
                     }
-                
-                    .btm-custom:hover {
+                  
+                    #dropdownMenuButton:hover {
                         background-color: #0056b3; 
-                        transform: translateY(5px); /* Baja más cuando pasas el mouse */
+                        color: white; /* Cambia el color del texto al pasar el mouse */
+                        transform: translate(0px, 0px); /* Mueve en X y Y */
                     }
-                
-                    .btm-custom:active {
+                  
+                    #dropdownMenuButton:active {
                         background-color: #004085; 
-                        transform: translateY(10px); /* Baja aún más cuando haces clic */
+                        transform: translate(0px, 0px); /* Mueve aún más en X y Y cuando se hace clic */
                     }
+                    
                 </style>
+    
+
 
 
 				</form>
@@ -1410,12 +1118,7 @@
     
 
     
-    
 
-    
-    
-    
-    
     
 
 
@@ -1437,18 +1140,6 @@
     
     
 
-    
-
-    
-
-    
-    
-    
-
-    
-    
-
-    
 
     <script src="assets/js/sleek.js"></script>
   <link href="assets/options/optionswitch.css" rel="stylesheet">
