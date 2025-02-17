@@ -33,6 +33,8 @@ document.getElementById("generarPDF3").addEventListener("click", async function 
         const denominacion3 = document.getElementById("denominacion3")?.value || "DENOMINACIÓN NO INGRESADA";
         const codigo3 = document.getElementById("codigo3")?.value || "CÓDIGO NO INGRESADO";
         const fecha3 = document.getElementById("fecha3")?.value || "FECHA NO INGRESADA";
+        const firmaSeleccionada3 = document.getElementById("firmaSeleccionada3")?.value || "Sin firma seleccionada";
+
 
         console.log("Datos del formulario obtenidos:", {
             solicitante3,
@@ -40,7 +42,28 @@ document.getElementById("generarPDF3").addEventListener("click", async function 
             denominacion3,
             codigo3,
             fecha3,
+            firmaSeleccionada3
         });
+        try {
+            // Cargar la imagen de la firma seleccionada
+            const firmaBytes = await fetch(firmaSeleccionada3).then(res => res.arrayBuffer());
+            const firmaImg = await pdfDoc.embedPng(firmaBytes); // Usa embedJpg si es JPG
+
+            // Ajustar tamaño y posición de la firma en el PDF
+            const firmaWidth = 100;  // Ancho en píxeles
+            const firmaHeight = 50;  // Alto en píxeles
+
+            page.drawImage(firmaImg, {
+                x: 300,  // Ajusta la posición horizontal
+                y: 110,  // Ajusta la posición vertical (debe estar en la parte baja del documento)
+                width: firmaWidth,
+                height: firmaHeight,
+            });
+
+            console.log("Firma añadida correctamente.");
+        } catch (error) {
+            console.error("Error al cargar la firma:", error.message);
+        }
 
         // Validar el campo de fecha
         const fechaRegex = /^([1-9]|[12][0-9]|3[01]) (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)$/i;

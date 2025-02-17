@@ -71,28 +71,29 @@
         <aside class="left-sidebar bg-sidebar">
           <div id="sidebar" class="sidebar sidebar-with-footer">
             <!-- Aplication Brand -->
-              <div class="app-brand">
-                <a href="https://www.youtube.com/watch?v=8cKvvmPwgP4" title="Sleek Dashboard">
-                    <img src="8.png" alt="Sleek Dashboard Logo" class="brand-icon" width="200" height="33">
-                    <span class="brand-name text-truncate"></span>
-                </a>
-            </div>
-            <style>  
-              .app-brand {
-                    display: flex;
-                    align-items: center;
-                    width: 100%; /* Permite que ocupe todo el ancho disponible */
-                    max-width: none; /* Elimina restricciones de ancho */
+            <div class="app-brand">
+              <a href="/index.html" title="Sleek Dashboard">
+                  <img src="8.png" alt="Sleek Dashboard Logo" class="brand-icon" width="200" height="33">
+                  <span class="brand-name text-truncate"></span>
+              </a>
+          </div>
+          <style>  
+            .app-brand {
+                  display: flex;
+                  align-items: center;
+                  width: 100%; /* Permite que ocupe todo el ancho disponible */
+                  max-width: none; /* Elimina restricciones de ancho */
+              }
+
+              .brand-icon {
+                    width: 190px !important;
+                    min-width: 190px; /* Evita que sea más pequeña */
+                    max-width: none; /* Quita restricciones */
+                    height: auto; /* Mantiene la proporción */
                 }
-  
-                .brand-icon {
-                      width: 170px !important;
-                      min-width: 170px; /* Evita que sea más pequeña */
-                      max-width: none; /* Quita restricciones */
-                      height: auto; /* Mantiene la proporción */
-                  }
-  
-            </style>
+
+          </style>
+
 
             <!-- begin sidebar scrollbar -->
             <div class="" data-simplebar style="height: 100%;">
@@ -824,7 +825,7 @@
                       </li>
 
                       <li class="dropdown-footer">
-                        <a href="index.html"> <i class="mdi mdi-logout"></i> Log Out </a>
+                        <a href="http://localhost/loguin/"> <i class="mdi mdi-logout"></i> Log Out </a>
                       </li>
                     </ul>
                   </li>
@@ -897,7 +898,7 @@
             </div>
 						<div class="col-md-12 mb-3">
 							<label for="nota">Nota</label>
-							<input type="text" class="form-control" id="nota" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
+							<input type="text" class="form-control" id="nota" placeholder="Nota" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
@@ -927,32 +928,41 @@
                     }
                 </script>
           
-                <style>
-                  #dropdownMenuButton {
-                      background-color: #ffffff; 
-                      color: rgb(89, 103, 231); 
-                      padding: 10px 20px; 
-                      font-size: 16px; 
-                      font-weight: bold; 
-                      border: 2px solid blue;
-                      border-radius: 8px; 
-                      cursor: pointer; 
-                      transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-                      margin-top: 20px; /* Agrega espacio arriba del botón */
-                  }
-
-                  #dropdownMenuButton:hover {
-                      background-color: #0056b3; 
-                      color: white; /* Cambia el color del texto al pasar el mouse */
-                      transform: translateY(5px); /* Baja más cuando pasas el mouse */
-                  }
-
-                  #dropdownMenuButton:active {
-                      background-color: #004085; 
-                      transform: translateY(10px); /* Baja aún más cuando haces clic */
-                  }
-
-                </style>
+          <style>
+            #dropdownMenuButton {
+                background-color: #ffffff; 
+                color: rgb(89, 103, 231); 
+                padding: 5px 5px; 
+                font-size: 16px; 
+                font-weight: bold; 
+                border: 2px solid rgb(0, 174, 255);
+                border-radius: 8px; 
+                cursor: pointer; 
+                transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+                margin-top: 5px; /* Espacio arriba del botón */
+                position: absolute;
+                left: 50px; /* Posición inicial */
+                top: -10px;
+            }
+          
+            #dropdownMenuButton:hover {
+                background-color: #0056b3; 
+                color: white; /* Cambia el color del texto al pasar el mouse */
+                transform: translate(0px, 0px); /* Mueve en X y Y */
+            }
+          
+            #dropdownMenuButton:active {
+                background-color: #004085; 
+                transform: translate(0px, 0px); /* Mueve aún más en X y Y cuando se hace clic */
+            }
+          </style>
+          
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let button = document.getElementById("dropdownMenuButton");
+                button.style.left = "140px"; // Mueve el botón a la derecha
+            });
+          </script>
 
 
 
@@ -990,14 +1000,15 @@
                 }
             
                 .btm-custom:hover {
-                    background-color: #0056b3; 
-                    transform: translateY(5px); /* Baja más cuando pasas el mouse */
-                }
-            
-                .btm-custom:active {
-                    background-color: #004085; 
-                    transform: translateY(10px); /* Baja aún más cuando haces clic */
-                }
+                        background-color: #0056b3; 
+                        color: white; /* Cambia el color del texto al pasar el mouse */
+                          transform: translate(0px, 0px); /* Mueve en X y Y */
+                    }
+                
+                    .btm-custom:active {
+                        background-color: #004085; 
+                        transform: translate(0px, 0px); /* Mueve aún más en X y Y cuando se hace clic */
+                      }
             </style>
 
 				</form>
@@ -1020,7 +1031,7 @@
     <footer class="footer mt-auto">
       <div class="copyright bg-white">
         <p>
-          Copyright &copy; <span id="copy-year"></span> a template by <a class="text-primary" href="https://themefisher.com" target="_blank">Themefisher</a>.
+          PLANDET &copy; <span id="copy-year"></span>.
         </p>
       </div>
       <script>

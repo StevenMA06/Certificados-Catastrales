@@ -43,6 +43,8 @@ document.getElementById("generarPDF5").addEventListener("click", async function 
             });
         };
 
+
+
         // Encabezado
         centerText("MUNICIPALIDAD PROVINCIAL DE TRUJILLO", fontBold, 17, yPos);
         yPos -= 30;
@@ -57,6 +59,12 @@ document.getElementById("generarPDF5").addEventListener("click", async function 
         const denominacion5 = document.getElementById("denominacion5").value || "DENOMINACION NO INGRESADA";
         const tipo5 = document.getElementById("tipo5").value || "TIPO NO INGRESADA";
         const catastral5 = document.getElementById("catastral5").value || "NCATASTRAL NO INGRESADA";
+        
+
+
+        
+
+
 
         page.drawText(`SOLICITANTE :      ${solicitante5}`, { x: margin, y: yPos, size: 13, font: fontBold });
         yPos -= 20;
@@ -64,22 +72,22 @@ document.getElementById("generarPDF5").addEventListener("click", async function 
         yPos -= 30;
 
   // Escribir el texto en negrita cursiva
-centerText("CERTIFICADO DE CÓDIGO CATASTRAL Nº 112 – 2025", fontBoldItalic, 16, yPos);
+        centerText("CERTIFICADO DE CÓDIGO CATASTRAL Nº 112 – 2025", fontBoldItalic, 16, yPos);
 
-// Calcular el ancho del texto para subrayarlo correctamente
-const textWidth = fontBoldItalic.widthOfTextAtSize("CERTIFICADO DE CÓDIGO CATASTRAL Nº 111 – 2024", 16);
-const startX = (page.getWidth() - textWidth) / 2;
-const endX = startX + textWidth;
+        // Calcular el ancho del texto para subrayarlo correctamente
+        const textWidth = fontBoldItalic.widthOfTextAtSize("CERTIFICADO DE CÓDIGO CATASTRAL Nº 111 – 2024", 16);
+        const startX = (page.getWidth() - textWidth) / 2;
+        const endX = startX + textWidth;
 
-// Dibujar la línea debajo del texto
-page.drawLine({
-    start: { x: startX, y: yPos - 2 }, // Un poco más abajo del texto
-    end: { x: endX, y: yPos - 2 },
-    thickness: 1, // Grosor del subrayado
-    color: rgb(0, 0, 0),
-});
+        // Dibujar la línea debajo del texto
+        page.drawLine({
+            start: { x: startX, y: yPos - 2 }, // Un poco más abajo del texto
+            end: { x: endX, y: yPos - 2 },
+            thickness: 1, // Grosor del subrayado
+            color: rgb(0, 0, 0),
+        });
 
-yPos -= 40; // Ajustar la posición para el siguiente contenido
+        yPos -= 40; // Ajustar la posición para el siguiente contenido
 
 
         // Texto justificado con sangría

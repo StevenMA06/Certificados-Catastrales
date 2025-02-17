@@ -73,22 +73,26 @@
             <!-- Aplication Brand -->
             <div class="app-brand">
               <a href="/index.html" title="Sleek Dashboard">
-                <svg
-                  class="brand-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid"
-                  width="30"
-                  height="33"
-                  viewBox="0 0 30 33">
-                  <g fill="none" fill-rule="evenodd">
-                    <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
-                    <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                  </g>
-                </svg>
-
-                <span class="brand-name text-truncate">Sleek Dashboard</span>
+                  <img src="8.png" alt="Sleek Dashboard Logo" class="brand-icon" width="200" height="33">
+                  <span class="brand-name text-truncate"></span>
               </a>
-            </div>
+          </div>
+          <style>  
+            .app-brand {
+                  display: flex;
+                  align-items: center;
+                  width: 100%; /* Permite que ocupe todo el ancho disponible */
+                  max-width: none; /* Elimina restricciones de ancho */
+              }
+
+              .brand-icon {
+                    width: 190px !important;
+                    min-width: 190px; /* Evita que sea más pequeña */
+                    max-width: none; /* Quita restricciones */
+                    height: auto; /* Mantiene la proporción */
+                }
+
+          </style>
 
             <!-- begin sidebar scrollbar -->
             <div class="" data-simplebar style="height: 100%;">
@@ -702,7 +706,7 @@
                       </li>
 
                       <li class="dropdown-footer">
-                        <a href="index.html"> <i class="mdi mdi-logout"></i> Log Out </a>
+                        <a href="http://localhost/loguin/"> <i class="mdi mdi-logout"></i> Log Out </a>
                       </li>
                     </ul>
                   </li>
@@ -787,12 +791,18 @@
                                     Please choose a username.
                                 </div>
                             </div >
-                            <div class="col-md-12 mb-3">
-                                <label for="fecha" >Fecha (Día y Mes)</label>
-                                <input type="text" class="form-control" id="fecha6" placeholder="Ejemplo: 26 diciembre" required>                      
-                                <p style="font-size: 90%">ex. 99/99/9999</p>
+                            <label class="col-md-12 mb-3" for="fecha6">Fecha (Día y Mes)</label>
 
-                            </div>
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="mdi mdi-calendar-range"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" id="fecha6" name="fecha" placeholder="Ejemplo: 26 diciembre" required>
+                      </div>
+
+                      <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
                             <div class="col-md-12 mb-3">
                                 <button class="btn btm-custom" type="submit" id="generarPDF6">GENERAR CERTIFIACO NEGATIVO</button>
                             </div>
