@@ -52,10 +52,33 @@ document.getElementById("generarPDF2").addEventListener("click", async function 
         // Obtener los valores del formulario
         const solicitante2 = document.getElementById("solicitante2").value || "NOMBRE NO INGRESADO";
         const referencia2 = document.getElementById("referencia2").value || "REFERENCIA NO INGRESADA";
-        const fecha2 = document.getElementById("fecha2").value || "FECHA NO INGRESADA";
+        
         const contenido2 = document.getElementById("contenido").value || "CONTENIDO NO INGRESADO";
         const nota2 = document.getElementById("nota").value || "NOTA NO INGRESADA";
         const firmaSeleccionada2 = document.getElementById("firmaSeleccionada2")?.value || "Sin firma seleccionada";
+
+
+        const fechaInput = document.getElementById("fecha2").value;
+        let fechaFormateada = "FECHA NO INGRESADA";
+        
+        if (fechaInput) {
+            const partesFecha = fechaInput.split("-"); // Divide la fecha "YYYY-MM-DD"
+const dia = parseInt(partesFecha[2], 10); // Obtiene el día
+const mes = parseInt(partesFecha[1], 10) - 1; // Obtiene el mes (restamos 1 porque el array de meses inicia en 0)
+
+const meses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+];
+
+const mesTexto = meses[mes];
+fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
+
+        }
+        
+
+
+
 
         console.log("Datos del formulario obtenidos:", {
             solicitante2,
@@ -154,7 +177,8 @@ yPos -= 40; // Ajustar la posición para el siguiente contenido
         yPos -= 40;
 
         // Fecha
-        page.drawText(`Trujillo, ${fecha2.replace(/ /, " de ")} del 2025`, {
+        page.drawText(fechaFormateada, {
+
             x: margin + 280,
             y: yPos,
             size: 13,

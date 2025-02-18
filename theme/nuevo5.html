@@ -164,52 +164,7 @@
                   </ul>
                 </li>
 
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#tables"
-                    aria-expanded="false" aria-controls="tables">
-                    <i class="mdi mdi-table"></i>
-                    <span class="nav-text">Tables</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="tables" data-parent="#sidebar-menu">
-                    <div class="sub-menu">
-                      <li class="">
-                        <a class="sidenav-item-link" href="basic-tables.html">
-                          <span class="nav-text">Basic Tables</span>
-                        </a>
-                      </li>
-
-                      <li class="has-sub ">
-                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#data-tables"
-                          aria-expanded="false" aria-controls="data-tables">
-                          <span class="nav-text">Data Tables</span> <b class="caret"></b>
-                        </a>
-
-                        <ul class="collapse " id="data-tables">
-                          <div class="sub-menu">
-                            <li class="">
-                              <a href="basic-data-table.html">Basic Data Table</a>
-                            </li>
-
-                           <li class="">
-                              <a href="responsive-data-table.html">Responsive Data Table</a>
-                            </li>
-
-                           <li class="">
-                              <a href="hoverable-data-table.html">Hoverable Data Table</a>
-                            </li>
-
-                           <li class="">
-                              <a href="expendable-data-table.html">Expendable Data Table</a>
-                            </li>
-                          </div>
-                        </ul>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
-
-                           
+                                           
 
                 <!-- <li class="section-title">
                   Pages
@@ -765,9 +720,6 @@
             <div class="content">
 
 
-
-
-
 <div class="row">
 	<div class="col-lg-6">
 		<div class="card card-default">
@@ -902,10 +854,27 @@
                         <i class="mdi mdi-calendar-range"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control" id="fecha4" name="fecha" placeholder="Ejemplo: 26 diciembre" required>
-                  </div>
+                    <input type="date" id="fecha4" name="fecha" min="2025-01-01" max="2025-12-31" />                 
+                   </div>
 
-                  <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
+                  <small class="form-text text-muted">Selecione la fecha.</small>
+                  <style>input[type="date"] {
+                    padding: 5px;
+                    font-size: 16px;
+                    border: 2px solid #908f92; /* Azul */
+                    border-radius: 8px;
+                    outline: none;
+                    cursor: pointer;
+                    background-color: #fff;
+                    color: #333;
+                }
+                
+                input[type="date"]:focus {
+                    border-color: #ffc400; /* Azul más oscuro al enfocar */
+                    box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
+                } 
+                </style>
+
 
 					</div>
           
@@ -957,19 +926,7 @@
     
     
     <!-- Footer -->
-    <footer class="footer mt-auto">
-      <div class="copyright bg-white">
-        <p>
-          Copyright &copy; <span id="copy-year"></span> a template by <a class="text-primary" href="https://themefisher.com" target="_blank">Themefisher</a>.
-        </p>
-      </div>
-      <script>
-        var d = new Date();
-        var year = d.getFullYear();
-        document.getElementById("copy-year").innerHTML = year;
-      </script>
-      
-    </footer>
+    
 
     </div> <!-- End Page Wrapper -->
   </div> <!-- End Wrapper -->

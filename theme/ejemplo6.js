@@ -54,10 +54,27 @@ document.getElementById("generarPDF6").addEventListener("click", async function 
         // Obtener los valores del formulario
         const solicitante6 = document.getElementById("solicitante6").value || "NOMBRE NO INGRESADO";
         const referencia6 = document.getElementById("referencia6").value || "REFERENCIA NO INGRESADA";
-        const fecha6 = document.getElementById("fecha6").value || "FECHA NO INGRESADA";
         const denominacion6 = document.getElementById("denominacion6").value || "DENOMINACION NO INGRESADO";
         const catastral6 = document.getElementById("catastral6").value || "NCATASTRAL NO INGRESADA";
         const tipo6 = document.getElementById("tipo6").value || "TIPO NO INGRESADA";
+
+        const fechaInput = document.getElementById("fecha6").value;
+        let fechaFormateada = "FECHA NO INGRESADA";
+        
+        if (fechaInput) {
+            const partesFecha = fechaInput.split("-"); // Divide la fecha "YYYY-MM-DD"
+const dia = parseInt(partesFecha[2], 10); // Obtiene el día
+const mes = parseInt(partesFecha[1], 10) - 1; // Obtiene el mes (restamos 1 porque el array de meses inicia en 0)
+
+const meses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+];
+
+const mesTexto = meses[mes];
+fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
+
+        }
 
 
         page.drawText(`SOLICITANTE :      ${solicitante6}`, { x: margin, y: yPos, size: 13, font: fontBold });
@@ -127,7 +144,7 @@ yPos -= 15; // Aumentamos el espacio entre los párrafos
         yPos -= 40;
 
         // Fecha
-        page.drawText(`Trujillo, ${fecha6.replace(/ /, " de ")} del 2024`, {
+        page.drawText(fechaFormateada, {
             x: margin + 290,
             y: yPos,
             size: 13,

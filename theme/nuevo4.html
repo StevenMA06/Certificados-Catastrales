@@ -799,10 +799,26 @@
                             <i class="mdi mdi-calendar-range"></i>
                           </span>
                         </div>
-                        <input type="text" class="form-control" id="fecha6" name="fecha" placeholder="Ejemplo: 26 diciembre" required>
+                        <input type="date" id="fecha6" name="fecha" min="2025-01-01" max="2025-12-31" />                 
                       </div>
 
-                      <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
+                      <small class="form-text text-muted">Selecione la fecha.</small>
+                      <style>input[type="date"] {
+                        padding: 5px;
+                        font-size: 16px;
+                        border: 2px solid #928f8f; /* Azul */
+                        border-radius: 8px;
+                        outline: none;
+                        cursor: pointer;
+                        background-color: #fff;
+                        color: #333;
+                    }
+                    
+                    input[type="date"]:focus {
+                        border-color: #ffc400; /* Azul más oscuro al enfocar */
+                        box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
+                    } 
+                    </style>
                             <div class="col-md-12 mb-3">
                                 <button class="btn btm-custom" type="submit" id="generarPDF6">GENERAR CERTIFIACO NEGATIVO</button>
                             </div>

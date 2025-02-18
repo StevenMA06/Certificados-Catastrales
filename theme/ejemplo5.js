@@ -54,13 +54,29 @@ document.getElementById("generarPDF5").addEventListener("click", async function 
         // Obtener los valores del formulario
         const solicitante5 = document.getElementById("solicitante5").value || "NOMBRE NO INGRESADO";
         const referencia5 = document.getElementById("referencia5").value || "REFERENCIA NO INGRESADA";
-        const fecha5 = document.getElementById("fecha5").value || "FECHA NO INGRESADA";
         const sublote5 = document.getElementById("sublote5").value || "SUBLOTE NO INGRESADO";
         const denominacion5 = document.getElementById("denominacion5").value || "DENOMINACION NO INGRESADA";
         const tipo5 = document.getElementById("tipo5").value || "TIPO NO INGRESADA";
         const catastral5 = document.getElementById("catastral5").value || "NCATASTRAL NO INGRESADA";
         
+        const fechaInput = document.getElementById("fecha5").value;
+        let fechaFormateada = "FECHA NO INGRESADA";
+        
+        if (fechaInput) {
+            const partesFecha = fechaInput.split("-"); // Divide la fecha "YYYY-MM-DD"
+const dia = parseInt(partesFecha[2], 10); // Obtiene el día
+const mes = parseInt(partesFecha[1], 10) - 1; // Obtiene el mes (restamos 1 porque el array de meses inicia en 0)
 
+const meses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+];
+
+const mesTexto = meses[mes];
+fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
+
+        }
+        
 
         
 
@@ -132,7 +148,7 @@ document.getElementById("generarPDF5").addEventListener("click", async function 
         yPos -= 40;
 
         // Fecha
-        page.drawText(`Trujillo, ${fecha5.replace(/ /, " de ")} del 2025`, {
+        page.drawText(fechaFormateada, {
             x: margin + 280,
             y: yPos,
             size: 13,

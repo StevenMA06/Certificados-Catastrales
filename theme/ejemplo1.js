@@ -35,8 +35,24 @@ document.getElementById("generarPDF1").addEventListener("click", async function 
         const referencia1 = document.getElementById("referencia1")?.value || "REFERENCIA NO INGRESADA";
         const denominacion1 = document.getElementById("denominacion1")?.value || "DENOMINACIÓN NO INGRESADA";
         const codigo1 = document.getElementById("codigo1")?.value || "CÓDIGO NO INGRESADO";
-        const fecha1 = document.getElementById("fecha1")?.value || "FECHA NO INGRESADA";
         const firmaSeleccionada = document.getElementById("firmaSeleccionada")?.value || "Sin firma seleccionada";
+        const fechaInput = document.getElementById("fecha1").value;
+        let fechaFormateada = "FECHA NO INGRESADA";
+        
+        if (fechaInput) {
+            const partesFecha = fechaInput.split("-"); // Divide la fecha "YYYY-MM-DD"
+const dia = parseInt(partesFecha[2], 10); // Obtiene el día
+const mes = parseInt(partesFecha[1], 10) - 1; // Obtiene el mes (restamos 1 porque el array de meses inicia en 0)
+
+const meses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+];
+
+const mesTexto = meses[mes];
+fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
+
+        }
 
         console.log("Datos del formulario obtenidos:", {
             solicitante1,
@@ -48,16 +64,7 @@ document.getElementById("generarPDF1").addEventListener("click", async function 
 
         });
 
-        // Validar el campo de fecha
-        const fechaRegex = /^([1-9]|[12][0-9]|3[01]) (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)$/i;
-        console.log("Validando fecha:", fecha1);
-
-        if (!fechaRegex.test(fecha1)) {
-            alert("Por favor, ingresa una fecha válida en el formato 'día mes' (ejemplo: 26 diciembre).");
-            return;
-        }
-
-        console.log("Fecha válida.");
+        
 
         const margin = 50;
         const maxWidth = page.getWidth() - 2 * margin;
@@ -271,7 +278,7 @@ page.drawLine({
 
         yPos = drawJustifiedText(notes, page, fontRegular, 13, margin + 3, yPos, maxWidth);
 
-        page.drawText(`Trujillo, ${fecha1.replace(/ /, " de ")} del 2025`, {
+        page.drawText(fechaFormateada, {
             x: margin + 332,
             y: yPos = 210,    
             size: 13,

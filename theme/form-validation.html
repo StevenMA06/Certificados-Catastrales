@@ -161,61 +161,7 @@
                   Pages
                 </li> -->
 
-                <li class="has-sub ">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
-                    aria-expanded="false" aria-controls="pages">
-                    <i class="mdi mdi-image-filter-none"></i>
-                    <span class="nav-text">PAGINA</span> <b class="caret"></b>
-                  </a>
-
-                  <ul class="collapse " id="pages" data-parent="#sidebar-menu">
-                    <div class="sub-menu ">
-                      <li class="">
-                        <a class="sidenav-item-link" href="user-profile.html">
-                          <span class="nav-text">User Profile</span>
-                        </a>
-                      </li>
-
-                      <li class="has-sub ">
-                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#authentication"
-                          aria-expanded="false" aria-controls="authentication">
-                          <span class="nav-text">Authentication</span> <b class="caret"></b>
-                        </a>
-
-                        <ul class="collapse " id="authentication">
-                          <div class="sub-menu">
-                            <li class="">
-                              <a href="sign-in.html">Sign In</a>
-                            </li>
-
-                           <li class="">
-                              <a href="sign-up.html">Sign Up</a>
-                            </li>
-                          </div>
-                        </ul>
-                      </li>
-
-                      <li class="has-sub ">
-                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#others"
-                          aria-expanded="false" aria-controls="others">
-                          <span class="nav-text">Others</span> <b class="caret"></b>
-                        </a>
-
-                        <ul class="collapse " id="others">
-                          <div class="sub-menu">
-                            <li class="">
-                              <a href="invoice.html">Invoice</a>
-                            </li>
-
-                           <li class="">
-                              <a href="404.html">404 Page</a>
-                            </li>
-                          </div>
-                        </ul>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
+                
 
                 
 
@@ -901,14 +847,29 @@
                             <i class="mdi mdi-calendar-range"></i>
                           </span>
                         </div>
-                        <input type="text" class="form-control" id="fecha1" name="fecha" placeholder="Ejemplo: 26 diciembre" required>
+                        <input type="date" id="fecha1" name="fecha" min="2025-01-01" max="2025-12-31" />                 
                       </div>
 
                       <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
                   <div class="col-md-12 mb-3">
                       <button class="btn btm-custom" type="submit" id="generarPDF1">GENERAR CERTIFIACO REGULAR</button>
                   </div>
-
+                  <style>input[type="date"] {
+                    padding: 5px;
+                    font-size: 16px;
+                    border: 2px solid #928f8f; /* Azul */
+                    border-radius: 8px;
+                    outline: none;
+                    cursor: pointer;
+                    background-color: #fff;
+                    color: #333;
+                }
+                
+                input[type="date"]:focus {
+                    border-color: #ffc400; /* Azul más oscuro al enfocar */
+                    box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
+                } 
+                </style>
 
                   <style>
                     .btm-custom {
