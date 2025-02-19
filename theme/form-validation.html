@@ -743,12 +743,12 @@
       </style>
       
 
-				<form >
+				<form  action="insertar.php" method="POST">
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
 							<label for="solicitante1">Solicitante</label>
 
-							<input type="text" class="form-control" id="solicitante1" placeholder="Solicitante"  required>
+							<input type="text" class="form-control" id="solicitante1" name="solicitante" placeholder="Solicitante"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
@@ -757,21 +757,21 @@
 						<div class="col-md-12 mb-3">
 							<label for="referencia1">Referencia</label>
 
-							<input type="text" class="form-control" id="referencia1" placeholder="Referencia"  required>
+							<input type="text" class="form-control" id="referencia1"  name="referencia" placeholder="Referencia"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
 						</div>
             <div class="col-md-12 mb-3">
               <label for="denominacion1">Denominación</label>
-              <input type="text" class="form-control" id="denominacion1" placeholder="Denominación"  required>
+              <input type="text" class="form-control" id="denominacion1"  name="denominacion" placeholder="Denominación"  required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
 						<div class="col-md-12 mb-3">
 							<label for="Codigo">Código</label>
-							<input type="text" class="form-control" id="codigo1" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
+							<input type="text" class="form-control" id="codigo1" placeholder="Código" name="codigo" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
@@ -802,41 +802,41 @@
                 </script>
           
 
-          <style>
-            #dropdownMenuButton {
-                background-color: #ffffff; 
-                color: rgb(89, 103, 231); 
-                padding: 5px 5px; 
-                font-size: 16px; 
-                font-weight: bold; 
-                border: 2px solid rgb(0, 168, 247);
-                border-radius: 8px; 
-                cursor: pointer; 
-                transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-                margin-top: 5px; /* Espacio arriba del botón */
-                position: absolute;
-                left: 50px; /* Posición inicial */
-                top: -10px;
-            }
-          
-            #dropdownMenuButton:hover {
-                background-color: #0056b3; 
-                color: white; /* Cambia el color del texto al pasar el mouse */
-                transform: translate(0px, 0px); /* Mueve en X y Y */
-            }
-          
-            #dropdownMenuButton:active {
-                background-color: #004085; 
-                transform: translate(0px, 0px); /* Mueve aún más en X y Y cuando se hace clic */
-            }
-          </style>
-          
-          <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                let button = document.getElementById("dropdownMenuButton");
-                button.style.left = "140px"; // Mueve el botón a la derecha
-            });
-          </script>
+                <style>
+                  #dropdownMenuButton {
+                      background-color: #ffffff; 
+                      color: rgb(89, 103, 231); 
+                      padding: 5px 5px; 
+                      font-size: 16px; 
+                      font-weight: bold; 
+                      border: 2px solid rgb(0, 168, 247);
+                      border-radius: 8px; 
+                      cursor: pointer; 
+                      transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+                      margin-top: 5px; /* Espacio arriba del botón */
+                      position: absolute;
+                      left: 50px; /* Posición inicial */
+                      top: -10px;
+                  }
+                
+                  #dropdownMenuButton:hover {
+                      background-color: #0056b3; 
+                      color: white; /* Cambia el color del texto al pasar el mouse */
+                      transform: translate(0px, 0px); /* Mueve en X y Y */
+                  }
+                
+                  #dropdownMenuButton:active {
+                      background-color: #004085; 
+                      transform: translate(0px, 0px); /* Mueve aún más en X y Y cuando se hace clic */
+                  }
+                </style>
+                
+                <script>
+                  document.addEventListener("DOMContentLoaded", function() {
+                      let button = document.getElementById("dropdownMenuButton");
+                      button.style.left = "140px"; // Mueve el botón a la derecha
+                  });
+                </script>
           
 
           <label class="col-md-12 mb-3" for="fecha">Fecha (Día y Mes)</label>
@@ -852,7 +852,8 @@
 
                       <small class="form-text text-muted">Ingresa el día seguido del mes en texto (ejemplo: 26 diciembre).</small>
                   <div class="col-md-12 mb-3">
-                      <button class="btn btm-custom" type="submit" id="generarPDF1">GENERAR CERTIFIACO REGULAR</button>
+                    <button type="submit" class="btn btm-custom">Guardar Datos</button>
+                      <button class="btn btm-custom" type="button" id="generarPDF1">GENERAR CERTIFIACO REGULAR</button>
                   </div>
                   <style>input[type="date"] {
                     padding: 5px;
@@ -948,21 +949,10 @@
  
     
     
-
-    
-
-    
-
-
-    
     
     
     <script src='assets/plugins/jquery-mask-input/jquery.mask.min.js'></script>
 
-
-    
-    
-    
 
     
 
