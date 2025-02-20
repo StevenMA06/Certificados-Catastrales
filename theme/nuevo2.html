@@ -73,7 +73,7 @@
             <!-- Aplication Brand -->
             <div class="app-brand">
               <a  title="Sleek Dashboard">
-                  <img src="8.png" alt="Sleek Dashboard Logo" class="brand-icon" width="200" height="33">
+                  <img src="assets/img/prueba/8.png" alt="Sleek Dashboard Logo" class="brand-icon" width="200" height="33">
                   <span class="brand-name text-truncate"></span>
               </a>
           </div>
@@ -680,10 +680,22 @@
                   </li>
                   <!-- User Account -->
                   <li class="dropdown user-menu">
-                    <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="33.png" class="user-image" alt="User Image" />
-                      <span class="d-none d-lg-inline-block">Abdus Salam</span>
-                    </button>
+                      <script>
+                          fetch("test_sesion.php")
+                          .then(response => response.text())
+                          .then(data => {
+                              document.getElementById("nombreUsuario").innerText = data;
+                          })
+                          .catch(error => console.error("Error:", error));
+                      </script>
+
+                                     
+                        <button class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <img src="33.png" class="user-image" alt="User Image" />
+                                <span id="nombreUsuario">Cargando...</span>
+                            </button>
+
+
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
                       <li class="dropdown-header">
@@ -756,12 +768,12 @@
           }
       </style>
       
-				<form >
+				<form action="insertar2.php" method="POST">
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
 							<label for="solicitante2">Solicitante</label>
 
-							<input type="text" class="form-control" id="solicitante2" placeholder="Solicitante"  required>
+							<input type="text" class="form-control" id="solicitante2" name="solicitante" placeholder="Solicitante"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
@@ -770,21 +782,21 @@
 						<div class="col-md-12 mb-3">
 							<label for="referencia2">Referencia</label>
 
-							<input type="text" class="form-control" id="referencia2" placeholder="Referencia"  required>
+							<input type="text" class="form-control" id="referencia2" name="referencia" placeholder="Referencia"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
 						</div>
             <div class="col-md-12 mb-3">
               <label for="contenido">Contenido</label>
-              <input type="text" class="form-control" id="contenido" placeholder="Denominación"  required>
+              <input type="text" class="form-control" id="contenido"  name="contenido" placeholder="Denominación"  required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
 						<div class="col-md-12 mb-3">
 							<label for="nota">Nota</label>
-							<input type="text" class="form-control" id="nota" placeholder="Nota" aria-describedby="inputGroupPrepend3" required>
+							<input type="text" class="form-control" id="nota" placeholder="Nota"  name="nota" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
@@ -883,7 +895,8 @@
               </div>
               
               <div class="col-md-12 mb-3">
-                <button class="btn btm-custom" type="submit" id="generarPDF2">GENERAR CERTIFIACO IRREGULAR</button>
+                <button type="submit" class="btn btm-custom">Guardar Datos</button>
+                <button class="btn btm-custom" type="button"  id="generarPDF2">GENERAR CERTIFIACO IRREGULAR</button>
               </div>
 
               <style>
@@ -988,7 +1001,7 @@
     
     
     
-    <script src="ejemplo2.js"></script>
+    <script src="assets/js/ejemplo2.jss"></script>
     <script src="formulario.js"></script> <!-- Archivo para manejar el formulario -->
     
 

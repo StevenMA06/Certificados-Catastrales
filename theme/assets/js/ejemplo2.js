@@ -63,16 +63,16 @@ document.getElementById("generarPDF2").addEventListener("click", async function 
         
         if (fechaInput) {
             const partesFecha = fechaInput.split("-"); // Divide la fecha "YYYY-MM-DD"
-const dia = parseInt(partesFecha[2], 10); // Obtiene el día
-const mes = parseInt(partesFecha[1], 10) - 1; // Obtiene el mes (restamos 1 porque el array de meses inicia en 0)
+            const dia = parseInt(partesFecha[2], 10); // Obtiene el día
+            const mes = parseInt(partesFecha[1], 10) - 1; // Obtiene el mes (restamos 1 porque el array de meses inicia en 0)
 
-const meses = [
-    "enero", "febrero", "marzo", "abril", "mayo", "junio",
-    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-];
+            const meses = [
+                "enero", "febrero", "marzo", "abril", "mayo", "junio",
+                "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+            ];
 
-const mesTexto = meses[mes];
-fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
+            const mesTexto = meses[mes];
+            fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
 
         }
         
