@@ -673,10 +673,21 @@
                   </li>
                   <!-- User Account -->
                   <li class="dropdown user-menu">
-                    <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="1.png" class="user-image" alt="User Image" />
-                      <span class="d-none d-lg-inline-block">Abdus Salam</span>
-                    </button>
+                    <script>
+                      fetch("test_sesion.php")
+                      .then(response => response.text())
+                      .then(data => {
+                          document.getElementById("nombreUsuario").innerText = data;
+                      })
+                      .catch(error => console.error("Error:", error));
+                  </script>
+
+                                 
+                    <button class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <img src="33.png" class="user-image" alt="User Image" />
+                            <span id="nombreUsuario">Cargando...</span>
+                        </button>
+
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
                       <li class="dropdown-header">
@@ -704,7 +715,10 @@
                       </li>
 
                       <li class="dropdown-footer">
-                        <a href="http://localhost/loguin/"> <i class="mdi mdi-logout"></i> Log Out </a>                      </li>
+                        <a href="http://localhost/sleek-bootstrap-main/theme/logout.php"> 
+                            <i class="mdi mdi-logout"></i> Log Out 
+                        </a>
+                    </li>
                     </ul>
                   </li>
                 </ul>

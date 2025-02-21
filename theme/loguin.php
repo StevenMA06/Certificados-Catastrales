@@ -25,7 +25,7 @@ if ($nombre !== "" && $pass !== "") {
         header("Location: http://localhost/sleek-bootstrap-main/theme/nuevo2.html");
         exit();
     } else {
-        header("Location: http://localhost/loguin/");
+        header("Location: http://localhost/sleek-bootstrap-main/theme/loguin.html");
         exit();
     }
 } else {
