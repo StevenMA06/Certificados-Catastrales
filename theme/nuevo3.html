@@ -681,28 +681,33 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <script>
-                      fetch("test_sesion.php")
-                      .then(response => response.text())
-                      .then(data => {
-                          document.getElementById("nombreUsuario").innerText = data;
-                      })
-                      .catch(error => console.error("Error:", error));
-                  </script>
+                      fetch('test_sesion.php') // Llama al script PHP
+                        .then(response => response.text()) // Convierte la respuesta en texto
+                        .then(data => {
+                            document.getElementById("nombreUsuarioBtn").innerText = data;  // Botón
+                            document.getElementById("nombreUsuarioMenu").innerText = data; // Menú
+                        })
+                        .catch(error => console.error("Error al obtener el usuario:", error));
+
+                    </script>
 
                                  
                     <button class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <img src="33.png" class="user-image" alt="User Image" />
-                            <span id="nombreUsuario">Cargando...</span>
+                            <img src="1.png" class="user-image" alt="User Image" />
+                            <span id="nombreUsuarioBtn">Cargando...</span>
                         </button>
 
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
+                      
+
                       <li class="dropdown-header">
-                        <img src="33.png" class="img-circle" alt="User Image" />
+                        <img src="1.png" class="img-circle" alt="User Image" />
                         <div class="d-inline-block">
-                          Abdus Salam <small class="pt-1">iamabdus@gmail.com</small>
+                            <span id="nombreUsuarioMenu">Cargando...</span> <!-- Menú -->
+                            <small class="pt-1">iamabdus@gmail.com</small>
                         </div>
-                      </li>
+                    </li>
 
                       <li>
                         <a href="user-profile.html">
@@ -941,7 +946,19 @@
     
     
     <!-- Footer -->
-    
+    <footer class="footer mt-auto">
+      <div class="copyright bg-white">
+        <p>
+          PLANDET &copy; <span id="copy-year"></span>.
+        </p>
+      </div>
+      <script>
+        var d = new Date();
+        var year = d.getFullYear();
+        document.getElementById("copy-year").innerHTML = year;
+      </script>
+      
+    </footer>
 
     </div> <!-- End Page Wrapper -->
   </div> <!-- End Wrapper -->
