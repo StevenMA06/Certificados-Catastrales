@@ -300,7 +300,7 @@ page.drawLine({
         yPos = drawJustifiedText(notes, page, fontRegular, 13, margin + 3, yPos, maxWidth);
 
         page.drawText(fechaFormateada, {
-            x: margin + 332,
+            x: margin + 312,
             y: yPos = 210,    
             size: 13,
             font: fontBold,

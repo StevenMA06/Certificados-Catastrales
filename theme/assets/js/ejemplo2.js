@@ -179,7 +179,7 @@ yPos -= 40; // Ajustar la posición para el siguiente contenido
         // Fecha
         page.drawText(fechaFormateada, {
 
-            x: margin + 280,
+            x: margin + 275,
             y: yPos,
             size: 13,
             font: fontBold,
