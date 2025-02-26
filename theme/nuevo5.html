@@ -764,12 +764,12 @@
           }
       </style>
       
-				<form >
+				<form action="insertar5.php" method="POST" >
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
 							<label for="validationSolicitante">Solicitante</label>
 
-							<input type="text" class="form-control" id="solicitante4" placeholder="Solicitante"  required>
+							<input type="text" class="form-control" id="solicitante4" name="solicitante4" placeholder="Solicitante"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
@@ -778,21 +778,21 @@
 						<div class="col-md-12 mb-3">
 							<label for="validationReferencia">Referencia</label>
 
-							<input type="text" class="form-control" id="referencia4" placeholder="Referencia"  required>
+							<input type="text" class="form-control" id="referencia4" name="referencia4" placeholder="Referencia"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
 						</div>
             <div class="col-md-12 mb-3">
               <label for="validationServerDenominación">Denominación</label>
-              <input type="text" class="form-control" id="denominacion4" placeholder="Denominación"  required>
+              <input type="text" class="form-control" id="denominacion4" name="denominacion4" placeholder="Denominación"  required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
 						<div class="col-md-12 mb-3">
 							<label for="validationServerCódigo">Código</label>
-							<input type="text" class="form-control" id="codigo4" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
+							<input type="text" class="form-control" id="codigo4" name="codigo4" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
@@ -873,7 +873,7 @@
                         <i class="mdi mdi-calendar-range"></i>
                       </span>
                     </div>
-                    <input type="date" id="fecha4" name="fecha" min="2025-01-01" max="2025-12-31" />                 
+                    <input type="date" id="fecha4" name="fecha4" min="2025-01-01" max="2025-12-31" />                 
                    </div>
 
                   <small class="form-text text-muted">Selecione la fecha.</small>
@@ -898,6 +898,7 @@
 					</div>
           
           <div class="col-md-12 mb-3">
+            <button type="submit" class="btn btm-custom">Guardar Datos</button>
             <button class="btn btm-custom" type="submit" id="generarPDF4">GENERAR CERTIFIACO CENTRO HISTORICO</button>
           </div>
 

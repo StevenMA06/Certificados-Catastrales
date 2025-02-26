@@ -763,12 +763,12 @@
           }
       </style>
       
-				<form >
+				<form action="insertar6.php" method="POST">
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
 							<label for="validationSolicitante">Solicitante</label>
 
-							<input type="text" class="form-control" id="solicitante5" placeholder="Solicitante"  required>
+							<input type="text" class="form-control" id="solicitante5" name="solicitante5" placeholder="Solicitante"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
@@ -777,28 +777,28 @@
 						<div class="col-md-12 mb-3">
 							<label for="validationReferencia">Referencia</label>
 
-							<input type="text" class="form-control" id="referencia5" placeholder="Referencia" required>
+							<input type="text" class="form-control" id="referencia5" name="referencia5" placeholder="Referencia" required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
 						</div>
             <div class="col-md-12 mb-3">
               <label for="validationServerDenominación">Denominación</label>
-              <input type="text" class="form-control" id="denominacion5" placeholder="Denominación"  required>
+              <input type="text" class="form-control" id="denominacion5" name="denominacion5" placeholder="Denominación"  required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
             <div class="col-md-12 mb-3">
               <label for="sublote5">Sublote</label>
-              <input type="text" class="form-control" id="sublote5" placeholder="Denominación"  required>
+              <input type="text" class="form-control" id="sublote5" name="sublote5" placeholder="Denominación"  required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
 						<div class="col-md-12 mb-3">
 							<label for="tipo5">Tipo</label>
-							<input type="text" class="form-control" id="tipo5" placeholder="Tipo" aria-describedby="inputGroupPrepend3" required>
+							<input type="text" class="form-control" id="tipo5" name="tipo5" placeholder="Tipo" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
@@ -806,7 +806,7 @@
 						</div>
             <div class="col-md-12 mb-3">
 							<label for="catastral5">Numero Catastral</label>
-							<input type="text" class="form-control" id="catastral5" placeholder="Numero Catastral" aria-describedby="inputGroupPrepend3" required>
+							<input type="text" class="form-control" id="catastral5" name="catastral5" placeholder="Numero Catastral" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
@@ -821,7 +821,7 @@
                         <i class="mdi mdi-calendar-range"></i>
                       </span>
                     </div>
-                    <input type="date" id="fecha5" name="fecha" min="2025-01-01" max="2025-12-31" />                 
+                    <input type="date" id="fecha5" name="fecha5" min="2025-01-01" max="2025-12-31" />                 
                    </div>
 
                   <small class="form-text text-muted">Selecione la fecha.</small>
@@ -845,8 +845,9 @@
 
 
 
-                  <div class="col-md-12 mb-3">
-                    <button class="btn btm-custom" type="submit" id="generarPDF5">GENERAR CERTIFIACO CENTRO HISTORICO</button>
+                  <div class="col-md-12 mb-3">                        
+                   <button type="submit" class="btn btm-custom">Guardar Datos</button>
+                   <button class="btn btm-custom" type="button" id="generarPDF5">GENERAR CERTIFIACO CENTRO HISTORICO</button>
                   </div>
         
                   <style>

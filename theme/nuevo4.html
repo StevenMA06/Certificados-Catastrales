@@ -768,12 +768,12 @@
                     }
                 </style>
                 
-                    <form >
+                    <form action="insertar4.php" method="POST">
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label for="solicitante6">Solicitante</label>
 
-                                <input type="text" class="form-control" id="solicitante6" placeholder="Solicitante"  required>
+                                <input type="text" class="form-control" id="solicitante6" name="solicitante" placeholder="Solicitante"  required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -782,28 +782,28 @@
                             <div class="col-md-12 mb-3">
                                 <label for="referencia6">Referencia</label>
 
-                                <input type="text" class="form-control" id="referencia6" placeholder="Referencia"  required>
+                                <input type="text" class="form-control" id="referencia6" name="referencia" placeholder="Referencia"  required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="denominacion6">Denominación</label>
-                                <input type="text" class="form-control" id="denominacion6" placeholder="Denominación"  required>
+                                <input type="text" class="form-control" id="denominacion6" name="denominacion" placeholder="Denominación"  required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="catastral6">Catastral</label>
-                                <input type="text" class="form-control" id="catastral6" placeholder="Catastral" aria-describedby="inputGroupPrepend3" required>
+                                <input type="text" class="form-control" id="catastral6" name="catastral" placeholder="Catastral" aria-describedby="inputGroupPrepend3" required>
                                 <div class="invalid-feedback">
                                     Please choose a username.
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="tipo6">Tipo</label>
-                                <input type="text" class="form-control" id="tipo6" placeholder="Tipo" aria-describedby="inputGroupPrepend3" required>
+                                <input type="text" class="form-control" id="tipo6" name="tipo" placeholder="Tipo" aria-describedby="inputGroupPrepend3" required>
 
                                 <div class="invalid-feedback">
                                     Please choose a username.
@@ -838,7 +838,8 @@
                     } 
                     </style>
                             <div class="col-md-12 mb-3">
-                                <button class="btn btm-custom" type="button" id="generarPDF6">GENERAR CERTIFIACO NEGATIVO</button>
+                              <button type="submit" class="btn btm-custom">Guardar Datos</button>
+                              <button class="btn btm-custom" type="button" id="generarPDF6">GENERAR CERTIFIACO NEGATIVO</button>
                             </div>
 
                             <style>

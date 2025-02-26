@@ -771,12 +771,12 @@
           }
       </style>
       
-				<form >
+				<form action="insertar3.php" method="POST">
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
 							<label for="validationSolicitante">Solicitante</label>
 
-							<input type="text" class="form-control" id="solicitante3" placeholder="Solicitante"  required>
+							<input type="text" class="form-control" id="solicitante3" name="solicitante" placeholder="Solicitante"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
@@ -785,21 +785,21 @@
 						<div class="col-md-12 mb-3">
 							<label for="validationReferencia">Referencia</label>
 
-							<input type="text" class="form-control" id="referencia3" placeholder="Referencia"  required>
+							<input type="text" class="form-control" id="referencia3" name="referencia" placeholder="Referencia"  required>
 							<div class="valid-feedback">
 								Looks good!
 							</div>
 						</div>
             <div class="col-md-12 mb-3">
               <label for="validationServerDenominación">Denominación</label>
-              <input type="text" class="form-control" id="denominacion3" placeholder="Denominación"  required>
+              <input type="text" class="form-control" id="denominacion3" name="denominacion" placeholder="Denominación"  required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
 						<div class="col-md-12 mb-3">
 							<label for="validationServerCódigo">Código</label>
-							<input type="text" class="form-control" id="codigo3" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
+							<input type="text" class="form-control" id="codigo3" name="codigo" placeholder="Código" aria-describedby="inputGroupPrepend3" required>
 
 							<div class="invalid-feedback">
 								Please choose a username.
@@ -899,7 +899,8 @@
           
 
           <div class="col-md-12 mb-3">
-            <button class="btn btm-custom" type="submit" id="generarPDF3">GENERAR CERTIFIACO IRREGULAR</button>
+            <button type="submit" class="btn btm-custom">Guardar Datos</button>
+            <button class="btn btm-custom" type="button" id="generarPDF3">GENERAR CERTIFIACO IRREGULAR</button>
           </div>
 
           <style>
