@@ -7,7 +7,7 @@ $dbname = "test1"; // Cambia esto si tu base de datos tiene otro nombre
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar si la conexión fue exitosa
+// Verificar conexión
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
@@ -18,7 +18,7 @@ $resultado = null;
 // Verificar si se ha enviado un ID a buscar
 if (isset($_POST["buscar"])) {
     $id_busqueda = $_POST["id_usuario"];
-    $sql = "SELECT id, usuario, password FROM login WHERE id = ?";
+    $sql = "SELECT id, usuario, password, documento_pdf FROM login WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_busqueda);
     $stmt->execute();
@@ -53,6 +53,7 @@ if (isset($_POST["buscar"])) {
                     <th>ID</th>
                     <th>Usuario</th>
                     <th>Contraseña</th>
+                    <th>Documento PDF</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,11 +63,19 @@ if (isset($_POST["buscar"])) {
                         echo "<tr>";
                         echo "<td>" . $row["id"] . "</td>";
                         echo "<td>" . $row["usuario"] . "</td>";
-                        echo "<td>" . $row["password"] . "</td>"; 
+                        echo "<td>" . $row["password"] . "</td>";
+
+                        // Si el usuario tiene un PDF, mostrar botón de descarga
+                        if (!empty($row["documento_pdf"])) {
+                            echo "<td><a href='descargar_pdf.php?id=" . $row["id"] . "' class='btn btn-success'>Descargar PDF</a></td>";
+                        } else {
+                            echo "<td class='text-center'>No disponible</td>";
+                        }
+
                         echo "</tr>";
                     }
                 } elseif ($id_busqueda !== "") {
-                    echo "<tr><td colspan='3' class='text-center'>No se encontró el usuario con ID $id_busqueda</td></tr>";
+                    echo "<tr><td colspan='4' class='text-center'>No se encontró el usuario con ID $id_busqueda</td></tr>";
                 }
                 ?>
             </tbody>
