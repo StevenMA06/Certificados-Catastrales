@@ -1,5 +1,3 @@
-
-
 document.getElementById("generarPDF1").addEventListener("click", async function () {
     try {
         console.log("Iniciando generación del PDF...");
@@ -15,7 +13,7 @@ document.getElementById("generarPDF1").addEventListener("click", async function 
 
         console.log("Fuentes cargadas correctamente.");
 // ** Cargar imagen de fondo **
-        const imageUrl = '3.png'; // Reemplaza con la URL o convierte tu imagen a base64.
+        const imageUrl = 'assets/img/pruebas/3.png'; // Reemplaza con la URL o convierte tu imagen a base64.
         const imageBytes = await fetch(imageUrl).then(res => res.arrayBuffer());
         const image = await pdfDoc.embedPng(imageBytes); // Cambia a embedJpg si la imagen es JPG.
         const imageDims = image.scaleToFit(595, 842); // Escalar la imagen al tamaño A4.
@@ -66,15 +64,6 @@ document.getElementById("generarPDF1").addEventListener("click", async function 
             body: formData
         });
         
-
-
-
-
-
-
-
-
-
         console.log("Datos del formulario obtenidos:", {
             solicitante1,
             referencia1,
@@ -182,38 +171,127 @@ page.drawLine({
 });
 yPos -= 40;
 
-        const certificationText = [
-            "Visto el presente expediente, mediante el cual", 
-            `solicitan se emita Certificado de Código Catastral al Terreno denominado como ${denominacion1} del Sector Catastral 19 de esta ciudad, al respecto se certifica lo siguiente.`,
-        ];
+// 1️⃣ Primero, definir las funciones
+function drawJustifiedMixedText(parts, page, fontSize, x, y, maxWidth) {
+    let currentX = x;
+    let currentY = y;
+    let currentLine = "";
+    let currentLineParts = [];
 
-        const firstParagraphWithIndent = [
-            "Que, a la fecha no se está emitiendo plano catastral,",  
-            "por cuanto este trámite se encuentra en proceso de implementación, por lo tanto, no podemos certificar la base gráfica de los inmuebles, pero sí su ubicación dentro del Catastro Urbano del Distrito, que corresponde a los Códigos Catastrales que los identifica y son:"
-        ];
+    parts.forEach(part => {
+        const words = part.text.split(" ");
+        words.forEach(word => {
+            const testLine = currentLine + word + " ";
+            const testWidth = part.font.widthOfTextAtSize(testLine, fontSize);
 
-        const firstLineIndent = margin + 230; 
-        page.drawText(certificationText[0], {
-            x: firstLineIndent,
-            y: yPos,
-            size: 13,
-            font: fontRegular,
+            if (testWidth > maxWidth && currentLine.length > 0) {
+                drawJustifiedLine(currentLineParts, page, fontSize, x, currentY, maxWidth);
+                currentY -= fontSize + 2;
+                currentLine = word + " ";
+                currentLineParts = [{ text: word, font: part.font }];
+            } else {
+                currentLine = testLine;
+                currentLineParts.push({ text: word, font: part.font });
+            }
+        });
+    });
+
+    if (currentLineParts.length > 0) {
+        drawJustifiedLine(currentLineParts, page, fontSize, x, currentY, maxWidth, true);
+        currentY -= fontSize + 2;
+    }
+
+    return currentY;
+}
+
+function drawJustifiedLine(lineParts, page, fontSize, x, y, maxWidth, lastLine = false) {
+    const fullLineText = lineParts.map(part => part.text).join(" ");
+    if (lineParts.length === 1 || lastLine) {
+        let currentX = x;
+        lineParts.forEach(part => {
+            page.drawText(part.text + " ", {
+                x: currentX,
+                y,
+                size: fontSize,
+                font: part.font
+            });
+            currentX += part.font.widthOfTextAtSize(part.text + " ", fontSize);
+        });
+        return;
+    }
+
+    const totalSpacing = maxWidth - lineParts.reduce((sum, part) => sum + part.font.widthOfTextAtSize(part.text + " ", fontSize), 0);
+    const spaceBetweenWords = totalSpacing / (lineParts.length - 1);
+
+    let currentX = x;
+    lineParts.forEach((part, index) => {
+        page.drawText(part.text, {
+            x: currentX,
+            y,
+            size: fontSize,
+            font: part.font
         });
 
-        yPos -= 15;
-        yPos = drawJustifiedText(certificationText.slice(1), page, fontRegular, 13, margin, yPos, maxWidth);
-        
-        const firstParagraphIndent = margin + 191;
-        page.drawText(firstParagraphWithIndent[0], {
-            x: firstParagraphIndent,
-            y: yPos,
-            size: 13,
-            font: fontRegular,
-        });
-        yPos -= 15;
-        yPos = drawJustifiedText(firstParagraphWithIndent.slice(1), page, fontRegular, 13, margin, yPos, maxWidth);
-        
-        yPos -= 20;
+        if (index < lineParts.length - 1) {
+            currentX += part.font.widthOfTextAtSize(part.text + " ", fontSize) + spaceBetweenWords;
+        }
+    });
+}
+
+// 2️⃣ Ahora, definir los textos y valores
+const certificationText = [
+    "Visto el presente expediente, mediante el cual",
+    "solicitan se emita Certificado de Código Catastral al Terreno denominado como "
+];
+
+const textBold = `${denominacion1}`;
+const textBold2 = `Sector Catastral 19`;
+const textAfterBold = " del "; 
+const textAfterBold2 = " de esta ciudad, al respecto se certifica lo siguiente.";
+
+const firstParagraphWithIndent = [
+    "Que, a la fecha no se está emitiendo plano catastral,",  
+    "por cuanto este trámite se encuentra en proceso de implementación, por lo tanto, no podemos certificar la base gráfica de los inmuebles, pero sí su ubicación dentro del Catastro Urbano del Distrito, que corresponde a los Códigos Catastrales que los identifica y son:"
+];
+
+// 3️⃣ Dibujar los textos en el PDF
+const firstLineIndent = margin + 228.5;
+page.drawText(certificationText[0], {
+    x: firstLineIndent,
+    y: yPos,
+    size: 13,
+    font: fontRegular,
+});
+yPos -= 15;
+
+// Dividir el texto en partes con fuentes distintas
+const parts = [
+    { text: certificationText[1], font: fontRegular },
+    { text: textBold, font: fontBold },
+    { text: textAfterBold, font: fontBold },
+    { text: textBold2, font: fontBold },
+    { text: textAfterBold2, font: fontRegular }
+];
+
+// Llamar a la función para justificar y aplicar negrita
+yPos = drawJustifiedMixedText(parts, page, 13, margin, yPos, maxWidth);
+
+// Continuar con el siguiente párrafo
+yPos -= 15;
+const firstParagraphIndent = margin + 191;
+page.drawText(firstParagraphWithIndent[0], {
+    x: firstParagraphIndent,
+    y: yPos,
+    size: 13,
+    font: fontRegular,
+});
+yPos -= 15;
+
+// Justificar el resto del texto manteniendo el margen
+yPos = drawJustifiedText(firstParagraphWithIndent.slice(1), page, fontRegular, 13, margin, yPos, maxWidth);
+
+yPos -= 20;
+
 
           // Dibujar "DENOMINACIÓN" y "CÓDIGO CATASTRAL" en columnas separadas
 page.drawText("DENOMINACIÓN", {
@@ -287,17 +365,43 @@ page.drawLine({
 
         yPos -= 50;
 
-        const notes = [
-            "• La presente no certifica propiedad ni posesión del inmueble, solamente la codificación que le corresponde por su ubicación espacial.",
-            "",
-            "• De conformidad con el Art 3° del Reglamento de la Ley N° 28294, la Zona de Ubicación del presente predio se considera como ZONA NO CATASTRADA.",
-            "",
-            "• Realizada la inscripción registral del inmueble, se nos hará llegar copia del asiento respectivo para validar el código catastral otorgado.",
-            "",
-            "• El certificado tiene validez por Doce (12) Meses."
-        ];
+        // Definir notas sin las partes en negrita
+const notes = [
+    "• La presente no certifica propiedad ni posesión del inmueble, solamente la codificación que le corresponde por su ubicación espacial.",
+    "",
+    "• De conformidad con el Art 3° del Reglamento de la Ley N° 28294, la Zona de Ubicación del presente predio se considera como",
+    "",
+    "• Realizada la inscripción registral del inmueble, se nos hará llegar copia del asiento respectivo para validar el código catastral otorgado.",
+    "",
+    "• El certificado tiene validez por"
+];
 
-        yPos = drawJustifiedText(notes, page, fontRegular, 13, margin + 3, yPos, maxWidth);
+// Imprimir notas manteniendo el formato original
+yPos = drawJustifiedText(notes, page, fontRegular, 13, margin + 3, yPos, maxWidth);
+
+// Agregar "ZONA NO CATASTRADA." en negrita justo después de la tercera nota
+page.drawText("ZONA NO CATASTRADA.", {
+    x: margin + 293,
+    y: yPos +90,
+    size: 13,
+    font: fontBold,
+    color: rgb(0, 0, 0),
+});
+
+// Ajustar la posición para la siguiente línea
+yPos -= -15;
+
+// Agregar "Doce (12) Meses." en negrita después de la última nota
+page.drawText("Doce (12) Meses.", {
+    x: margin + 188,
+    y: yPos,
+    size: 13,
+    font: fontBold,
+    color: rgb(0, 0, 0),
+});
+
+// Ajustar la posición para la siguiente línea
+yPos -= 20;
 
         page.drawText(fechaFormateada, {
             x: margin + 312,

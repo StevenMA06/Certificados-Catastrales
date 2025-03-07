@@ -13,7 +13,7 @@ document.getElementById("generarPDF4").addEventListener("click", async function 
 
         console.log("Fuentes cargadas correctamente.");
 // ** Cargar imagen de fondo **
-        const imageUrl = '3.png'; // Reemplaza con la URL o convierte tu imagen a base64.
+        const imageUrl = 'assets/img/pruebas/3.png'; // Reemplaza con la URL o convierte tu imagen a base64.
         const imageBytes = await fetch(imageUrl).then(res => res.arrayBuffer());
         const image = await pdfDoc.embedPng(imageBytes); // Cambia a embedJpg si la imagen es JPG.
         const imageDims = image.scaleToFit(595, 842); // Escalar la imagen al tamaño A4.
