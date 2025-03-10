@@ -243,14 +243,39 @@ page.drawLine({
         const notes = [
             "• La presente no certifica propiedad ni posesión del inmueble, solamente la codificación que le corresponde por su ubicación espacial.",
             "",
-            "• De conformidad con el Art 3° del Reglamento de la Ley N° 28294, la Zona de Ubicación del presente predio se considera como ZONA NO CATASTRADA.",
+            "• De conformidad con el Art 3° del Reglamento de la Ley N° 28294, la Zona de Ubicación del presente predio se considera como",
             "",
             "• Realizada la inscripción registral del inmueble, se nos hará llegar copia del asiento respectivo para validar el código catastral otorgado.",
             "",
-            "• El certificado tiene validez por Doce (12) Meses."
+            "• El certificado tiene validez por"
         ];
-
+        
+        // Imprimir notas manteniendo el formato original
         yPos = drawJustifiedText(notes, page, fontRegular, 13, margin + 3, yPos, maxWidth);
+        
+        // Agregar "ZONA NO CATASTRADA." en negrita justo después de la tercera nota
+        page.drawText("ZONA NO CATASTRADA.", {
+            x: margin + 293,
+            y: yPos +90,
+            size: 13,
+            font: fontBold,
+            color: rgb(0, 0, 0),
+        });
+        
+        // Ajustar la posición para la siguiente línea
+        yPos -= -15;
+        
+        // Agregar "Doce (12) Meses." en negrita después de la última nota
+        page.drawText("Doce (12) Meses.", {
+            x: margin + 188,
+            y: yPos,
+            size: 13,
+            font: fontBold,
+            color: rgb(0, 0, 0),
+        });
+        
+        // Ajustar la posición para la siguiente línea
+        yPos -= 20;
 
         page.drawText(fechaFormateada, {
             x: margin + 332,

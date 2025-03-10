@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const formContainer4 = document.getElementById("formContainer4");
     const formContainer5 = document.getElementById("formContainer5");
     const formContainer6 = document.getElementById("formContainer6");
+    const formContainer7 = document.getElementById("formContainer7");
+
 
 
     
@@ -16,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
         formContainer4.classList.add("d-none");
         formContainer5.classList.add("d-none");
         formContainer6.classList.add("d-none");
+        formContainer7.classList.add("d-none");
+
 
 
     }
@@ -62,6 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
         hideAllForms(); 
         if (formContainer6) {
             formContainer6.classList.remove("d-none"); 
+        }
+        
+    });
+    document.getElementById("ejem7").addEventListener("click", function () {
+        hideAllForms(); 
+        if (formContainer7) {
+            formContainer7.classList.remove("d-none"); 
         }
         
     });

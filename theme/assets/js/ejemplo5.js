@@ -56,7 +56,6 @@ document.getElementById("generarPDF5").addEventListener("click", async function 
         const referencia5 = document.getElementById("referencia5").value || "REFERENCIA NO INGRESADA";
         const sublote5 = document.getElementById("sublote5").value || "SUBLOTE NO INGRESADO";
         const denominacion5 = document.getElementById("denominacion5").value || "DENOMINACION NO INGRESADA";
-        const tipo5 = document.getElementById("tipo5").value || "TIPO NO INGRESADA";
         const catastral5 = document.getElementById("catastral5").value || "NCATASTRAL NO INGRESADA";
         
         const fechaInput = document.getElementById("fecha5").value;
@@ -109,7 +108,7 @@ fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
         // Texto justificado con sangría
         const certificationText = [
             `Que, el lote de terreno irregular Acumulado `,
-            `denominado SUBLOTE ${sublote5}, ubicados en ${sublote5}- ${denominacion5} de esta Ciudad, NO está Codificado por no contar con documentación que sustente la ${tipo5}, perteneciendo éste a Tres (03) Unidades Catastrales, la misma que se encuentra ubicada en el Sector Catastral ${catastral5}.`,
+            `denominado SUBLOTE ${sublote5}, ubicados en ${sublote5}- ${denominacion5} de esta Ciudad, NO está Codificado por no contar con documentación que sustente la ACUMULACION, perteneciendo éste a Tres (03) Unidades Catastrales, la misma que se encuentra ubicada en el Sector Catastral ${catastral5}.`,
         ];
         const firstParagraphWithIndent = [
             `Que, el Sistema de Codificación Catastral que `,
