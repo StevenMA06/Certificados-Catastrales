@@ -33,6 +33,7 @@ document.getElementById("generarPDF1").addEventListener("click", async function 
         const referencia1 = document.getElementById("referencia1")?.value || "REFERENCIA NO INGRESADA";
         const denominacion1 = document.getElementById("denominacion1")?.value || "DENOMINACIÓN NO INGRESADA";
         const codigo1 = document.getElementById("codigo1")?.value || "CÓDIGO NO INGRESADO";
+        const numeroc1 = document.getElementById("numeroc1")?.value || "Sector Catastral NO INGRESADO";
         const firmaSeleccionada = document.getElementById("firmaSeleccionada")?.value || "Sin firma seleccionada";
         const fechaInput = document.getElementById("fecha1").value;
         let fechaFormateada = "FECHA NO INGRESADA";
@@ -241,13 +242,13 @@ function drawJustifiedLine(lineParts, page, fontSize, x, y, maxWidth, lastLine =
 // 2️⃣ Ahora, definir los textos y valores
 const certificationText = [
     "Visto el presente expediente, mediante el cual",
-    "solicitan se emita Certificado de Código Catastral al Terreno denominado como "
+    "solicitan se emita Certificado de Código Catastral al Terreno denominado como"
 ];
 
 const textBold = `${denominacion1}`;
-const textBold2 = `Sector Catastral 19`;
-const textAfterBold = " del "; 
-const textAfterBold2 = " de esta ciudad, al respecto se certifica lo siguiente.";
+const textBold2 = `Sector Catastral ${numeroc1}`;
+const textAfterBold = "del"; 
+const textAfterBold2 = "de esta ciudad, al respecto se certifica lo siguiente.";
 
 const firstParagraphWithIndent = [
     "Que, a la fecha no se está emitiendo plano catastral,",  
@@ -268,7 +269,7 @@ yPos -= 15;
 const parts = [
     { text: certificationText[1], font: fontRegular },
     { text: textBold, font: fontBold },
-    { text: textAfterBold, font: fontBold },
+    { text: textAfterBold, font: fontRegular },
     { text: textBold2, font: fontBold },
     { text: textAfterBold2, font: fontRegular }
 ];
@@ -366,51 +367,63 @@ page.drawLine({
         yPos -= 50;
 
         // Definir notas sin las partes en negrita
-const notes = [
-    "• La presente no certifica propiedad ni posesión del inmueble, solamente la codificación que le corresponde por su ubicación espacial.",
-    "",
-    "• De conformidad con el Art 3° del Reglamento de la Ley N° 28294, la Zona de Ubicación del presente predio se considera como",
-    "",
-    "• Realizada la inscripción registral del inmueble, se nos hará llegar copia del asiento respectivo para validar el código catastral otorgado.",
-    "",
-    "• El certificado tiene validez por"
-];
-
-// Imprimir notas manteniendo el formato original
-yPos = drawJustifiedText(notes, page, fontRegular, 13, margin + 3, yPos, maxWidth);
-
-// Agregar "ZONA NO CATASTRADA." en negrita justo después de la tercera nota
-page.drawText("ZONA NO CATASTRADA.", {
-    x: margin + 293,
-    y: yPos +90,
-    size: 13,
-    font: fontBold,
-    color: rgb(0, 0, 0),
-});
-
-// Ajustar la posición para la siguiente línea
-yPos -= -15;
-
-// Agregar "Doce (12) Meses." en negrita después de la última nota
-page.drawText("Doce (12) Meses.", {
-    x: margin + 188,
-    y: yPos,
-    size: 13,
-    font: fontBold,
-    color: rgb(0, 0, 0),
-});
-
-// Ajustar la posición para la siguiente línea
-yPos -= 20;
-
+        const notes = [
+            "La presente no certifica propiedad ni posesión del inmueble, solamente la codificación que le corresponde por su ubicación espacial.",
+            "De conformidad con el Art 3° del Reglamento de la Ley N° 28294, la Zona de Ubicación del presente predio se considera como",
+            "Realizada la inscripción registral del inmueble, se nos hará llegar copia del asiento respectivo para validar el código catastral otorgado.",
+            "El certificado tiene validez por"
+        ];
+        
+        const bullet = "•"; // Símbolo de viñeta
+        const bulletMargin = margin + 5; // 🔹 Más margen a la izquierda
+        const textMargin = bulletMargin + 15; // 🔹 Más espacio entre viñeta y texto
+        
+        notes.forEach(note => {
+            // Dibujar la viñeta
+            page.drawText(bullet, {
+                x: bulletMargin,
+                y: yPos,
+                size: 13,
+                font: fontBold,
+                color: rgb(0, 0, 0),
+            });
+        
+            // Justificar el texto de la viñeta dentro de un ancho más amplio
+            yPos = drawJustifiedText([note], page, fontRegular, 13, textMargin, yPos, maxWidth - textMargin - -40);
+        
+            yPos -= 15; // 🔹 Espaciado un poco mayor entre viñetas
+        });
+        
+        // Agregar "ZONA NO CATASTRADA." en negrita justo después de la tercera nota
+        page.drawText("ZONA NO CATASTRADA.", {
+            x: margin + 309.5,
+            y: yPos +105,
+            size: 13,
+            font: fontBold,
+            color: rgb(0, 0, 0),
+        });
+        
+        // Ajustar la posición para la siguiente línea
+        yPos -= -15;
+        
+        // Agregar "Doce (12) Meses." en negrita después de la última nota
+        page.drawText("Doce (12) Meses.", {
+            x: margin + 195.5,
+            y: yPos +15,
+            size: 13,
+            font: fontBold,
+            color: rgb(0, 0, 0),
+        });
+        
+        yPos -= -50;
         page.drawText(fechaFormateada, {
             x: margin + 312,
-            y: yPos = 210,    
+            y: yPos = 195,    
             size: 13,
             font: fontBold,
         });
 
-        yPos -= 100;
+        yPos -= 120;
         page.drawText("C.c.\nArchivo", {
             x: margin,
             y: yPos,

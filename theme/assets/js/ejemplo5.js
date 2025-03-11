@@ -105,35 +105,127 @@ fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
         yPos -= 40; // Ajustar la posición para el siguiente contenido
 
 
-        // Texto justificado con sangría
-        const certificationText = [
-            `Que, el lote de terreno irregular Acumulado `,
-            `denominado SUBLOTE ${sublote5}, ubicados en ${sublote5}- ${denominacion5} de esta Ciudad, NO está Codificado por no contar con documentación que sustente la ACUMULACION, perteneciendo éste a Tres (03) Unidades Catastrales, la misma que se encuentra ubicada en el Sector Catastral ${catastral5}.`,
-        ];
-        const firstParagraphWithIndent = [
-            `Que, el Sistema de Codificación Catastral que `,
-            `manejamos, identifica a los lotes Urbanos del Distrito, por lo tanto, no están considerados los predios Acumulados sin sustentación alguna, materia de la presente Certificación, dentro de este sistema, correspondiéndole por lo tanto a esta solicitud:`,
-        ];
-        const firstLineIndent = margin + 212; 
-        page.drawText(certificationText[0], {
-            x: firstLineIndent,
-            y: yPos,
-            size: 13,
-            font: fontRegular,
+        // 1️⃣ Primero, definir las funciones
+function drawJustifiedMixedText(parts, page, fontSize, x, y, maxWidth) {
+    let currentX = x;
+    let currentY = y;
+    let currentLine = "";
+    let currentLineParts = [];
+
+    parts.forEach(part => {
+        const words = part.text.split(" ");
+        words.forEach(word => {
+            const testLine = currentLine + word + " ";
+            const testWidth = part.font.widthOfTextAtSize(testLine, fontSize);
+
+            if (testWidth > maxWidth && currentLine.length > 0) {
+                drawJustifiedLine(currentLineParts, page, fontSize, x, currentY, maxWidth);
+                currentY -= fontSize + 2;
+                currentLine = word + " ";
+                currentLineParts = [{ text: word, font: part.font }];
+            } else {
+                currentLine = testLine;
+                currentLineParts.push({ text: word, font: part.font });
+            }
+        });
+    });
+
+    if (currentLineParts.length > 0) {
+        drawJustifiedLine(currentLineParts, page, fontSize, x, currentY, maxWidth, true);
+        currentY -= fontSize + 2;
+    }
+
+    return currentY;
+}
+
+function drawJustifiedLine(lineParts, page, fontSize, x, y, maxWidth, lastLine = false) {
+    const fullLineText = lineParts.map(part => part.text).join(" ");
+    if (lineParts.length === 1 || lastLine) {
+        let currentX = x;
+        lineParts.forEach(part => {
+            page.drawText(part.text + " ", {
+                x: currentX,
+                y,
+                size: fontSize,
+                font: part.font
+            });
+            currentX += part.font.widthOfTextAtSize(part.text + " ", fontSize);
+        });
+        return;
+    }
+
+    const totalSpacing = maxWidth - lineParts.reduce((sum, part) => sum + part.font.widthOfTextAtSize(part.text + " ", fontSize), 0);
+    const spaceBetweenWords = totalSpacing / (lineParts.length - 1);
+
+    let currentX = x;
+    lineParts.forEach((part, index) => {
+        page.drawText(part.text, {
+            x: currentX,
+            y,
+            size: fontSize,
+            font: part.font
         });
 
-        yPos -= 15;
-        yPos = drawJustifiedText(certificationText.slice(1), page, fontRegular, 13, margin, yPos, maxWidth);
+        if (index < lineParts.length - 1) {
+            currentX += part.font.widthOfTextAtSize(part.text + " ", fontSize) + spaceBetweenWords;
+        }
+    });
+}
 
-        const firstParagraphIndent = margin + 200;
-        page.drawText(firstParagraphWithIndent[0], {
-            x: firstParagraphIndent,
-            y: yPos,
-            size: 13,
-            font: fontRegular,
-        });
-        yPos -= 15;
-        yPos = drawJustifiedText(firstParagraphWithIndent.slice(1), page, fontRegular, 13, margin, yPos, maxWidth);
+// 2️⃣ Ahora, definir los textos y valores
+const certificationText = [
+    "Que, el lote de terreno irregular Acumulado",
+    `denominado SUBLOTE ${sublote5}, ubicados en ${sublote5}- ${denominacion5} de esta Ciudad,`
+];
+
+const textBold = `NO`;    
+const textBold2 = `ACUMULACION,`;
+const textAfterBold = `está Codificado por no contar con documentación que sustente la`; 
+const textAfterBold2 = "perteneciendo éste a Tres (03) Unidades Catastrales, la misma que se encuentra ubicada en el ";
+const textAfterBold3 = `Sector Catastral ${catastral5}`
+
+const firstParagraphWithIndent = [
+    "Que, el Sistema de Codificación Catastral que",  
+    "manejamos, identifica a los lotes Urbanos del Distrito, por lo tanto, no están considerados los predios Acumulados sin sustentación alguna, materia de la presente Certificación, dentro de este sistema, correspondiéndole por lo tanto a esta solicitud:"
+];
+
+// 3️⃣ Dibujar los textos en el PDF
+const firstLineIndent = margin + 206;
+page.drawText(certificationText[0], {
+    x: firstLineIndent,
+    y: yPos,
+    size: 13,
+    font: fontRegular,
+});
+yPos -= 15;
+
+// Dividir el texto en partes con fuentes distintas
+const parts = [
+    { text: certificationText[1], font: fontRegular },
+    { text: textBold, font: fontBold },
+    { text: textAfterBold, font: fontRegular },
+    { text: textBold2, font: fontBold },
+    { text: textAfterBold2, font: fontRegular },
+    { text: textAfterBold3, font: fontBold }
+];
+
+// Llamar a la función para justificar y aplicar negrita
+yPos = drawJustifiedMixedText(parts, page, 13, margin, yPos, maxWidth);
+
+// Continuar con el siguiente párrafo
+yPos -= 15;
+const firstParagraphIndent = margin + 199;
+page.drawText(firstParagraphWithIndent[0], {
+    x: firstParagraphIndent,
+    y: yPos,
+    size: 13,
+    font: fontRegular,
+});
+yPos -= 15;
+
+// Justificar el resto del texto manteniendo el margen
+yPos = drawJustifiedText(firstParagraphWithIndent.slice(1), page, fontRegular, 13, margin, yPos, maxWidth);
+
         
         yPos -= 50;
 

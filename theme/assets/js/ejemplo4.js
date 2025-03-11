@@ -33,6 +33,7 @@ document.getElementById("generarPDF4").addEventListener("click", async function 
         const referencia4 = document.getElementById("referencia4")?.value || "REFERENCIA NO INGRESADA";
         const denominacion4 = document.getElementById("denominacion4")?.value || "DENOMINACIÓN NO INGRESADA";
         const codigo4 = document.getElementById("codigo4")?.value || "CÓDIGO NO INGRESADO";
+        const numeroc5 = document.getElementById("numeroc5")?.value || "Sector Catastral NO INGRESADO";
         const firmaSeleccionada4 = document.getElementById("firmaSeleccionada4")?.value || "Sin firma seleccionada";
 
         const fechaInput = document.getElementById("fecha4").value;
@@ -134,38 +135,116 @@ fechaFormateada = `Trujillo, ${dia} de ${mesTexto} del 2025`;
 
         yPos -= 40;
 
-        const certificationText = [
-            "Que, el inmueble materia de la presente ", 
-            `certificación, se encuentra ubicado en el Sector Catastral Nº 07 correspondiendo a una Lotización Irregular, y que cuenta a la fecha con información cartográfica preliminar a nivel de lotes, por lo tanto, no podemos certificar la base gráfica del inmueble; pero si su ubicación dentro del Catastro Urbano del Distrito de Trujillo, que corresponde al Código Catastral que los identifica y es:`,
-        ];
+        // 1️⃣ Primero, definir las funciones
+function drawJustifiedMixedText(parts, page, fontSize, x, y, maxWidth) {
+    let currentX = x;
+    let currentY = y;
+    let currentLine = "";
+    let currentLineParts = [];
 
-       // const firstParagraphWithIndent = [
-        //    "Que, a la fecha no se está emitiendo plano catastral,",  
-          //  "por cuanto este trámite se encuentra en proceso de implementación, por lo tanto, no podemos certificar la base gráfica de los inmuebles, pero sí su ubicación dentro del Catastro Urbano del Distrito, que corresponde a los Códigos Catastrales que los identifica y son:"
-        //];
+    parts.forEach(part => {
+        const words = part.text.split(" ");
+        words.forEach(word => {
+            const testLine = currentLine + word + " ";
+            const testWidth = part.font.widthOfTextAtSize(testLine, fontSize);
 
-        const firstLineIndent = margin + 263; 
-        page.drawText(certificationText[0], {
-            x: firstLineIndent,
-            y: yPos,
-            size: 13,
-            font: fontRegular,
+            if (testWidth > maxWidth && currentLine.length > 0) {
+                drawJustifiedLine(currentLineParts, page, fontSize, x, currentY, maxWidth);
+                currentY -= fontSize + 2;
+                currentLine = word + " ";
+                currentLineParts = [{ text: word, font: part.font }];
+            } else {
+                currentLine = testLine;
+                currentLineParts.push({ text: word, font: part.font });
+            }
+        });
+    });
+
+    if (currentLineParts.length > 0) {
+        drawJustifiedLine(currentLineParts, page, fontSize, x, currentY, maxWidth, true);
+        currentY -= fontSize + 2;
+    }
+
+    return currentY;
+}
+
+function drawJustifiedLine(lineParts, page, fontSize, x, y, maxWidth, lastLine = false) {
+    const fullLineText = lineParts.map(part => part.text).join(" ");
+    if (lineParts.length === 1 || lastLine) {
+        let currentX = x;
+        lineParts.forEach(part => {
+            page.drawText(part.text + " ", {
+                x: currentX,
+                y,
+                size: fontSize,
+                font: part.font
+            });
+            currentX += part.font.widthOfTextAtSize(part.text + " ", fontSize);
+        });
+        return;
+    }
+
+    const totalSpacing = maxWidth - lineParts.reduce((sum, part) => sum + part.font.widthOfTextAtSize(part.text + " ", fontSize), 0);
+    const spaceBetweenWords = totalSpacing / (lineParts.length - 1);
+
+    let currentX = x;
+    lineParts.forEach((part, index) => {
+        page.drawText(part.text, {
+            x: currentX,
+            y,
+            size: fontSize,
+            font: part.font
         });
 
-        yPos -= 15;
-        yPos = drawJustifiedText(certificationText.slice(1), page, fontRegular, 13, margin, yPos, maxWidth);
-        
-        const firstParagraphIndent = margin + 191;
-        //page.drawText(firstParagraphWithIndent[0], {
-          //  x: firstParagraphIndent,
-           // y: yPos,
-            //size: 13,
-            //font: fontRegular,
-        //});
-        //yPos -= 15;
-       // yPos = drawJustifiedText(firstParagraphWithIndent.slice(1), page, fontRegular, 13, margin, yPos, maxWidth);
-        
-        yPos -= 20;
+        if (index < lineParts.length - 1) {
+            currentX += part.font.widthOfTextAtSize(part.text + " ", fontSize) + spaceBetweenWords;
+        }
+    });
+}
+
+// 2️⃣ Ahora, definir los textos y valores
+const certificationText = [
+    "Que, el inmueble materia de la presente",
+    "certificación, se encuentra ubicado en el "
+];
+
+const textBold = `Sector Catastral Nº ${numeroc5}`;
+const textBold2 = `correspondiendo a una Lotización Irregular, y que cuenta a la fecha con información cartográfica preliminar a nivel de lotes, por lo tanto,`;
+const textAfterBold = "no podemos certificar la base gráfica del inmueble; pero si su ubicación dentro del Catastro Urbano del Distrito de Trujillo,"; 
+const textAfterBold2 = "que corresponde al Código Catastral que los identifica y es:";
+
+
+const firstParagraphWithIndent = [
+    "Que, a la fecha no se está emitiendo plano catastral,",  
+    "por cuanto este trámite se encuentra en proceso de implementación, por lo tanto, no podemos certificar la base gráfica de los inmuebles, pero sí su ubicación dentro del Catastro Urbano del Distrito, que corresponde a los Códigos Catastrales que los identifica y son:"
+];
+
+// 3️⃣ Dibujar los textos en el PDF
+const firstLineIndent = margin + 259.5;
+page.drawText(certificationText[0], {
+    x: firstLineIndent,
+    y: yPos,
+    size: 13,
+    font: fontRegular,
+});
+yPos -= 15;
+
+// Dividir el texto en partes con fuentes distintas
+const parts = [
+    { text: certificationText[1], font: fontRegular },
+    { text: textBold, font: fontBold },
+    { text: textAfterBold, font: fontRegular },
+    { text: textBold2, font: fontRegular },
+    { text: textAfterBold2, font: fontRegular }
+];
+
+// Llamar a la función para justificar y aplicar negrita
+yPos = drawJustifiedMixedText(parts, page, 13, margin, yPos, maxWidth);
+
+// Continuar con el siguiente párrafo
+yPos -= 20;
+
+
 
           // Dibujar "DENOMINACIÓN" y "CÓDIGO CATASTRAL" en columnas separadas
 page.drawText("DENOMINACIÓN", {
@@ -241,22 +320,36 @@ page.drawLine({
         page.drawText("NOTA:", { x: margin, y: yPos, size: 13, font: fontBold });
         yPos -= 20;
         const notes = [
-            "• La presente no certifica propiedad ni posesión del inmueble, solamente la codificación que le corresponde por su ubicación espacial.",
-            "",
-            "• De conformidad con el Art 3° del Reglamento de la Ley N° 28294, la Zona de Ubicación del presente predio se considera como",
-            "",
-            "• Realizada la inscripción registral del inmueble, se nos hará llegar copia del asiento respectivo para validar el código catastral otorgado.",
-            "",
-            "• El certificado tiene validez por"
+            "La presente no certifica propiedad ni posesión del inmueble, solamente la codificación que le corresponde por su ubicación espacial.",
+            "De conformidad con el Art 3° del Reglamento de la Ley N° 28294, la Zona de Ubicación del presente predio se considera como",
+            "Realizada la inscripción registral del inmueble, se nos hará llegar copia del asiento respectivo para validar el código catastral otorgado.",
+            "El certificado tiene validez por"
         ];
         
-        // Imprimir notas manteniendo el formato original
-        yPos = drawJustifiedText(notes, page, fontRegular, 13, margin + 3, yPos, maxWidth);
+        const bullet = "•"; // Símbolo de viñeta
+        const bulletMargin = margin + 5; // 🔹 Más margen a la izquierda
+        const textMargin = bulletMargin + 15; // 🔹 Más espacio entre viñeta y texto
+        
+        notes.forEach(note => {
+            // Dibujar la viñeta
+            page.drawText(bullet, {
+                x: bulletMargin,
+                y: yPos,
+                size: 13,
+                font: fontBold,
+                color: rgb(0, 0, 0),
+            });
+        
+            // Justificar el texto de la viñeta dentro de un ancho más amplio
+            yPos = drawJustifiedText([note], page, fontRegular, 13, textMargin, yPos, maxWidth - textMargin - -40);
+        
+            yPos -= 15; // 🔹 Espaciado un poco mayor entre viñetas
+        });
         
         // Agregar "ZONA NO CATASTRADA." en negrita justo después de la tercera nota
         page.drawText("ZONA NO CATASTRADA.", {
-            x: margin + 293,
-            y: yPos +90,
+            x: margin + 309.5,
+            y: yPos +105,
             size: 13,
             font: fontBold,
             color: rgb(0, 0, 0),
@@ -267,14 +360,13 @@ page.drawLine({
         
         // Agregar "Doce (12) Meses." en negrita después de la última nota
         page.drawText("Doce (12) Meses.", {
-            x: margin + 188,
-            y: yPos,
+            x: margin + 195.5,
+            y: yPos +15,
             size: 13,
             font: fontBold,
             color: rgb(0, 0, 0),
         });
         
-        // Ajustar la posición para la siguiente línea
         yPos -= 20;
 
         page.drawText(fechaFormateada, {
