@@ -172,7 +172,7 @@ page.drawLine({
 });
 yPos -= 40;
 
-// 1️⃣ Primero, definir las funciones
+
 function drawJustifiedMixedText(parts, page, fontSize, x, y, maxWidth) {
     let currentX = x;
     let currentY = y;
@@ -239,7 +239,7 @@ function drawJustifiedLine(lineParts, page, fontSize, x, y, maxWidth, lastLine =
     });
 }
 
-// 2️⃣ Ahora, definir los textos y valores
+//definir los textos y valores
 const certificationText = [
     "Visto el presente expediente, mediante el cual",
     "solicitan se emita Certificado de Código Catastral al Terreno denominado como"
@@ -255,7 +255,7 @@ const firstParagraphWithIndent = [
     "por cuanto este trámite se encuentra en proceso de implementación, por lo tanto, no podemos certificar la base gráfica de los inmuebles, pero sí su ubicación dentro del Catastro Urbano del Distrito, que corresponde a los Códigos Catastrales que los identifica y son:"
 ];
 
-// 3️⃣ Dibujar los textos en el PDF
+//Dibujar los textos en el PDF
 const firstLineIndent = margin + 228.5;
 page.drawText(certificationText[0], {
     x: firstLineIndent,
@@ -274,7 +274,6 @@ const parts = [
     { text: textAfterBold2, font: fontRegular }
 ];
 
-// Llamar a la función para justificar y aplicar negrita
 yPos = drawJustifiedMixedText(parts, page, 13, margin, yPos, maxWidth);
 
 // Continuar con el siguiente párrafo
@@ -294,7 +293,7 @@ yPos = drawJustifiedText(firstParagraphWithIndent.slice(1), page, fontRegular, 1
 yPos -= 20;
 
 
-          // Dibujar "DENOMINACIÓN" y "CÓDIGO CATASTRAL" en columnas separadas
+ // Dibujar "DENOMINACIÓN" y "CÓDIGO CATASTRAL" en columnas separadas
 page.drawText("DENOMINACIÓN", {
     x: margin,
     y: yPos,
