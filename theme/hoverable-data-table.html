@@ -1258,15 +1258,21 @@
 
 <script>
   $(document).ready(function () {
-      let tabla = $('#hoverable-data-table').DataTable(); // Inicializamos DataTable
+      let tabla; // Variable para almacenar la referencia de DataTables
 
       function cargarUsuarios() {
           fetch("lal.php")
               .then(response => response.json())
               .then(data => {
-                  console.log(" Datos recibidos:", data);
-                  
-                  tabla.clear().draw(); // Limpiar la tabla antes de insertar nuevos datos
+                  console.log("📌 Datos recibidos:", data);
+
+                  // Si la tabla ya está inicializada, la destruimos antes de volver a llenarla
+                  if ($.fn.DataTable.isDataTable('#hoverable-data-table')) {
+                      $('#hoverable-data-table').DataTable().destroy();
+                  }
+
+                  let tablaBody = document.getElementById("tablaBody");
+                  tablaBody.innerHTML = ""; // Limpiar contenido anterior
 
                   if (data.length > 0) {
                       data.forEach(usuario => {
@@ -1274,21 +1280,30 @@
                               ? `<a href='${usuario.documento_pdf}' class='btn btn-success' target='_blank'>Ver PDF</a>`
                               : "No disponible";
 
-                          tabla.row.add([
-                              usuario.id,
-                              usuario.usuario,
-                              usuario.password,
-                              linkPDF
-                          ]).draw(false); // Agregamos la fila a la tabla
+                          let fila = `<tr>
+                              <td>${usuario.id}</td>
+                              <td>${usuario.usuario}</td>
+                              <td>${usuario.password}</td>
+                              <td>${linkPDF}</td>
+                          </tr>`;
+                          tablaBody.innerHTML += fila;
                       });
+                  } else {
+                      tablaBody.innerHTML = `<tr><td colspan='4' class='text-center'>No hay usuarios registrados</td></tr>`;
                   }
+
+                  // Ahora inicializamos DataTables sobre la tabla actualizada
+                  tabla = $('#hoverable-data-table').DataTable({
+                      "order": [[0, "asc"]] // Ordenar por ID de manera ascendente
+                  });
               })
-              .catch(error => console.error(' Error:', error));
+              .catch(error => console.error('❌ Error:', error));
       }
 
       cargarUsuarios(); // Llamamos la función para cargar los usuarios
   });
 </script>
+
 
 
 
